@@ -1,7 +1,6 @@
 require 'minitest_helper'
 
 class TestMarkMaker < MiniTest::Unit::TestCase
-
   def test_that_it_has_a_version_number
     refute_nil ::MarkMaker::VERSION
   end
@@ -27,7 +26,7 @@ class TestMarkMaker < MiniTest::Unit::TestCase
   def test_bullet_generation
     content = "This is a bullet"
     gen = MarkMaker::Generator.new
-	markup = gen.bullet(content)
+    markup = gen.bullet(content)
     assert_match(/^ - #{content}$/, markup)
   end
 
@@ -45,5 +44,4 @@ class TestMarkMaker < MiniTest::Unit::TestCase
     markup = gen.link(label, url)
     assert_match(/^\[#{label}\]\(#{url}\)$/, markup)
   end
-
 end
