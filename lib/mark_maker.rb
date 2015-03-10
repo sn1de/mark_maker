@@ -1,5 +1,10 @@
 require "mark_maker/version"
 
+begin
+	require "pry"
+rescue LoadError
+end
+
 module MarkMaker
 
   def MarkMaker.line_for(underscore, content)
