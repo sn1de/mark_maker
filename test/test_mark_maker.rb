@@ -31,6 +31,13 @@ class TestMarkMaker < MiniTest::Unit::TestCase
     assert_match(/^ - #{content}$/, markup)
   end
 
+  def test_number_generation
+    content = "Number this line"
+    gen = MarkMaker::Generator.new
+    markup = gen.number(content)
+    assert_match(/^\s\d\.\s#{content}$/, markup)
+  end
+
   def test_link_generation
     label = "anywhere"
     url = "http://www.yahoo.com"

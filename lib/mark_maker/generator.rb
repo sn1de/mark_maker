@@ -19,6 +19,10 @@ module MarkMaker
       " - #{content}"
     end
 
+    def number(content)
+      " 1. #{content}"
+    end
+
     def link(label, url)
       "[#{label}](#{url})"
     end
