@@ -7,3 +7,6 @@ end
 
 task :default => :test
 
+task :console do
+	exec "irb -r mark_maker -I ./lib"
+end
