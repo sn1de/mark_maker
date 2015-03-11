@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "mark_maker"
   spec.version       = MarkMaker::VERSION
   spec.authors       = ["Brad Schneider"]
-  spec.email         = ["bschneider@containerstore.com"]
+  spec.email         = ["brad.schneider@me.com"]
   spec.summary       = %q{Markdown generator.}
-  spec.description   = %q{Utility functions for generating Markdown programatically.}
+  spec.description   = %q{Programatically generate markdown documents.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
