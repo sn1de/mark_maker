@@ -44,7 +44,7 @@ doc << "TODO: Write usage instructions here ... ideally embed the code used to c
 doc << ""
 doc << gen.header2("Contributing")
 doc << ""
-doc << gen.number("Fork it ( https://github.com/sn1de/mark_maker/fork )")
+doc << gen.number(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"))
 doc << gen.number("Create your feature branch (`git checkout -b my-new-feature`)")
 doc << gen.number("Commit your changes (`git commit -am 'Add some feature'`)")
 doc << gen.number("Push to the branch (`git push origin my-new-feature`)")

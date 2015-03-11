@@ -26,7 +26,7 @@ TODO: Write usage instructions here ... ideally embed the code used to create th
 Contributing
 ------------
 
- 1. Fork it ( https://github.com/[my-github-username]/mark_maker/fork )
+ 1. [Fork it](https://github.com/sn1de/mark_maker/fork)
  1. Create your feature branch (`git checkout -b my-new-feature`)
  1. Commit your changes (`git commit -am 'Add some feature'`)
  1. Push to the branch (`git push origin my-new-feature`)
