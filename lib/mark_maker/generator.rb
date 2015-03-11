@@ -25,5 +25,9 @@ module MarkMaker
     def link(label, url)
       "[#{label}](#{url})"
     end
+
+    def code(content)
+      "    #{content}"
+    end
   end
 end

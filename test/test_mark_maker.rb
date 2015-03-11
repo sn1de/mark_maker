@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestMarkMaker < MiniTest::Unit::TestCase
+class TestMarkMaker < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::MarkMaker::VERSION
   end
@@ -43,5 +43,12 @@ class TestMarkMaker < MiniTest::Unit::TestCase
     gen = MarkMaker::Generator.new
     markup = gen.link(label, url)
     assert_match(/^\[#{label}\]\(#{url}\)$/, markup)
+  end
+
+  def test_code_generation
+    content = "var = code()"
+    gen = MarkMaker::Generator.new
+    markup = gen.code(content)
+    assert_match(/\s{4}var = code\(\)$/, markup)
   end
 end

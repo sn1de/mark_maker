@@ -15,3 +15,8 @@ end
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = ['lib/**/*.rb']
 end
+
+task :readme do
+  exec "ruby -Ilib bin/generate_readme.rb > README.md"
+end
+
