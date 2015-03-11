@@ -23,6 +23,13 @@ class TestMarkMaker < Minitest::Test
     assert_match(/^#{title}\n-{#{title.size}}$/, markup)
   end
 
+  def test_header3_generation
+    title = "abc123"
+    gen = MarkMaker::Generator.new
+    markup = gen.header3(title)
+    assert_match(/###\s#{title}/, markup)
+  end
+
   def test_bullet_generation
     content = "This is a bullet"
     gen = MarkMaker::Generator.new

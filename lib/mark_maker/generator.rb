@@ -14,6 +14,9 @@ module MarkMaker
       "#{title}\n#{line_for('-', title)}"
     end
 
+    def header3(title)
+      "### #{title}"
+    end
     def bullet(content)
       " - #{content}"
     end

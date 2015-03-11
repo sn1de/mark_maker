@@ -21,7 +21,19 @@ Or install it yourself as:
 Usage
 -----
 
-TODO: Write usage instructions here ... ideally embed the code used to create the readme!
+MarkMaker provides line oriented conversion of content to markdown elements. It
+currently supports first, second and third level headings, links, bullets, numbered
+bullets and code markdown. See bin/generate_readme.rb for the code used to generate this
+document and a sample of all these markdown generators in action.
+
+### Header Example
+    gen = MarkMaker::Generator.new
+    gen.header1('Let It Begin'')
+
+Produces
+
+    Let It Begin
+    ============
 
 Contributing
 ------------
@@ -41,3 +53,6 @@ existing README.md
 
     vi bin/generate_readme.rb
     rake readme
+
+I'm calling this Extreme [Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html).
+It's kind of like [Inception](http://en.wikipedia.org/wiki/Inception) ;)
