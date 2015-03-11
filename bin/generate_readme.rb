@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Extreme Readme Driven Development
 #
 # Readme Driven Development Explained:
