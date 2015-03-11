@@ -44,7 +44,7 @@ Contributing
  1. Push to the branch (`git push origin my-new-feature`)
  1. Create a new Pull Request
 
-About this README
+About This README
 -----------------
 
 This readme document is created using MarkMaker. To modify it, edit the code

@@ -60,7 +60,7 @@ doc << gen.number("Commit your changes (`git commit -am 'Add some feature'`)")
 doc << gen.number("Push to the branch (`git push origin my-new-feature`)")
 doc << gen.number("Create a new Pull Request")
 doc << ""
-doc << gen.header2("About this README")
+doc << gen.header2("About This README")
 doc << ""
 doc << "This readme document is created using MarkMaker. To modify it, edit the code"
 doc << "in #{__FILE__} and then run the 'readme' rake task to generate and overwrite the"
