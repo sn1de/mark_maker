@@ -58,4 +58,14 @@ class TestMarkMaker < Minitest::Test
     markup = gen.code(content)
     assert_match(/\s{4}var = code\(\)$/, markup)
   end
+
+  def test_numbered_list_generation
+    content = ["1", "2", "3"]
+    gen = MarkMaker::Generator.new
+    markup = gen.numbers(*content)
+    assert(markup.length == content.length, "The number of lines of content and markup is not equal.")
+    content.zip(markup).each do |c, m|
+      assert_match(/^\s#{c}\.\s#{c}$/, m)
+    end
+  end
 end

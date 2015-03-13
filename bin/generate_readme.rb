@@ -56,11 +56,11 @@ gen.header1(example_header).lines.map { |l| doc << gen.code(l) }
 doc << ""
 doc << gen.header2("Contributing")
 doc << ""
-doc << gen.number(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"))
-doc << gen.number("Create your feature branch (`git checkout -b my-new-feature`)")
-doc << gen.number("Commit your changes (`git commit -am 'Add some feature'`)")
-doc << gen.number("Push to the branch (`git push origin my-new-feature`)")
-doc << gen.number("Create a new Pull Request")
+doc << gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),
+                   "Create your feature branch (`git checkout -b my-new-feature`)",
+                   "Commit your changes (`git commit -am 'Add some feature'`)",
+                   "Push to the branch (`git push origin my-new-feature`)",
+                   "Create a new Pull Request")
 doc << ""
 doc << gen.header2("About This README")
 doc << ""

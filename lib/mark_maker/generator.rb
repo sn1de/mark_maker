@@ -17,12 +17,20 @@ module MarkMaker
     def header3(title)
       "### #{title}"
     end
+
     def bullet(content)
       " - #{content}"
     end
 
-    def number(content)
-      " 1. #{content}"
+    def number(content, number = 1)
+      " #{number}. #{content}"
+    end
+
+    def numbers(*content)
+      numbered_list = []
+      current_number = 0
+      content.each { |li| numbered_list << number(li, current_number += 1) }
+      numbered_list
     end
 
     def link(label, url)
