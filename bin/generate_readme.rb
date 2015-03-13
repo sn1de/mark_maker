@@ -54,6 +54,21 @@ doc << gen.code("gen.header1('#{example_header}'')")
 doc << "\nProduces\n\n"
 gen.header1(example_header).lines.map { |l| doc << gen.code(l) }
 doc << ""
+doc << gen.header3("Bulleted List Example")
+list_content = ['gold', 'silver', 'bronze']
+doc << ""
+doc << gen.code("list_content = ['gold', 'silver', 'bronze']")
+doc << gen.code("gen.bullets(*list_content)")
+doc << "\nProduces\n\n"
+doc << gen.bullets(*list_content)
+doc << ""
+doc << "Or a numbered list with..."
+doc << ""
+numbered_code = "gen.numbers(*list_content)"
+doc << gen.code(numbered_code)
+doc << ""
+doc << eval(numbered_code)
+doc << ""
 doc << gen.header2("Contributing")
 doc << ""
 doc << gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),

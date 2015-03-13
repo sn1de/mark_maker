@@ -35,6 +35,25 @@ Produces
     Let It Begin
     ============
 
+### Bulleted List Example
+
+    list_content = ['gold', 'silver', 'bronze']
+    gen.bullets(*list_content)
+
+Produces
+
+ - gold
+ - silver
+ - bronze
+
+Or a numbered list with...
+
+    gen.numbers(*list_content)
+
+ 1. gold
+ 2. silver
+ 3. bronze
+
 Contributing
 ------------
 

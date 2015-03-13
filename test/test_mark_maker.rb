@@ -37,11 +37,30 @@ class TestMarkMaker < Minitest::Test
     assert_match(/^ - #{content}$/, markup)
   end
 
+  def test_bulleted_list_generation
+    content = ["gold", "silver", "bronze"]
+    gen = MarkMaker::Generator.new
+    markup = gen.bullets(*content)
+    assert(markup.length == content.length, "The number of lines of content and markup is not equal.")
+    content.zip(markup).each do |c, m|
+      assert_match(/^\s-\s#{c}$/, m)
+    end
+  end
   def test_number_generation
     content = "Number this line"
     gen = MarkMaker::Generator.new
     markup = gen.number(content)
     assert_match(/^\s\d\.\s#{content}$/, markup)
+  end
+
+  def test_numbered_list_generation
+    content = ["1", "2", "3"]
+    gen = MarkMaker::Generator.new
+    markup = gen.numbers(*content)
+    assert(markup.length == content.length, "The number of lines of content and markup is not equal.")
+    content.zip(markup).each do |c, m|
+      assert_match(/^\s#{c}\.\s#{c}$/, m)
+    end
   end
 
   def test_link_generation
@@ -57,15 +76,5 @@ class TestMarkMaker < Minitest::Test
     gen = MarkMaker::Generator.new
     markup = gen.code(content)
     assert_match(/\s{4}var = code\(\)$/, markup)
-  end
-
-  def test_numbered_list_generation
-    content = ["1", "2", "3"]
-    gen = MarkMaker::Generator.new
-    markup = gen.numbers(*content)
-    assert(markup.length == content.length, "The number of lines of content and markup is not equal.")
-    content.zip(markup).each do |c, m|
-      assert_match(/^\s#{c}\.\s#{c}$/, m)
-    end
   end
 end

@@ -22,6 +22,12 @@ module MarkMaker
       " - #{content}"
     end
 
+    def bullets(*content)
+      bullet_list = []
+      content.each { |li| bullet_list << bullet(li) }
+      bullet_list
+    end
+
     def number(content, number = 1)
       " #{number}. #{content}"
     end
