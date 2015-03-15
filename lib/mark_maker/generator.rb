@@ -46,5 +46,11 @@ module MarkMaker
     def code(content)
       "    #{content}"
     end
+
+    def code_block(*content)
+      block = []
+      content.each { |c| block << code(c) }
+      block
+    end
   end
 end

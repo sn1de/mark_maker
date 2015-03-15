@@ -77,4 +77,14 @@ class TestMarkMaker < Minitest::Test
     markup = gen.code(content)
     assert_match(/\s{4}var = code\(\)$/, markup)
   end
+
+  def test_code_block_generation
+    content = ["a = 1", "b = 2", "c = 3"]
+    gen = MarkMaker::Generator.new
+    markup = gen.code_block(*content)
+    assert(markup.length == content.length, "The number of lines of content and markup is not equal.")
+    content.zip(markup).each do |c, m|
+      assert_match(/^\s{4}#{c}$/, m)
+    end
+  end
 end

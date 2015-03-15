@@ -54,6 +54,28 @@ Or a numbered list with...
  2. silver
  3. bronze
 
+### Code Examples
+
+Standard markdown code blocks and embedding are supported, as well as github
+flavored markdown fenced code blocks
+
+    some_code = [ "# add it up",
+                  "total = [1, 2, 3, 4].inject do |sum, i|",
+                  "  sum += i",
+                  "end",
+                  "",
+                  "puts total" ]
+    gen.code_block(*some_code)
+
+Produces
+
+        some_code = [ "# add it up",
+                      "total = [1, 2, 3, 4].inject do |sum, i|",
+                      "  sum += i",
+                      "end",
+                      "",
+                      "puts total" ]
+
 Contributing
 ------------
 

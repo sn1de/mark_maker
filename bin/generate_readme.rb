@@ -69,6 +69,25 @@ doc << gen.code(numbered_code)
 doc << ""
 doc << eval(numbered_code)
 doc << ""
+doc << gen.header3("Code Examples")
+doc << ""
+doc << "Standard markdown code blocks and embedding are supported, as well as github"
+doc << "flavored markdown fenced code blocks"
+doc << ""
+sample_block = <<-EOT.split("\n")
+some_code = [ "# add it up",
+              "total = [1, 2, 3, 4].inject do |sum, i|",
+              "  sum += i",
+              "end",
+              "",
+              "puts total" ]
+EOT
+execution_block = "gen.code_block(*some_code)"
+doc << gen.code_block(*sample_block, execution_block)
+doc << ""
+doc << "Produces\n\n"
+doc << gen.code_block(*gen.code_block(*sample_block))
+doc << ""
 doc << gen.header2("Contributing")
 doc << ""
 doc << gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),
