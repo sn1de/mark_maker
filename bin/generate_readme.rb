@@ -86,7 +86,16 @@ execution_block = "gen.code_block(*some_code)"
 doc << gen.code_block(*sample_block, execution_block)
 doc << ""
 doc << "Produces\n\n"
-doc << gen.code_block(*gen.code_block(*sample_block))
+doc << gen.code_block(*gen.code_block(*eval(sample_block.join)))
+doc << ""
+doc << "You can also generate a github flavored markdown fenced code version."
+fenced_code = "gen.fenced_code_block(*some_code)"
+doc << ""
+doc << gen.code(fenced_code)
+doc << ""
+doc << "Produces"
+doc << ""
+doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code}\n"))
 doc << ""
 doc << gen.header2("Contributing")
 doc << ""

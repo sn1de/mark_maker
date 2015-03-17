@@ -69,12 +69,27 @@ flavored markdown fenced code blocks
 
 Produces
 
-        some_code = [ "# add it up",
-                      "total = [1, 2, 3, 4].inject do |sum, i|",
-                      "  sum += i",
-                      "end",
-                      "",
-                      "puts total" ]
+        # add it up
+        total = [1, 2, 3, 4].inject do |sum, i|
+          sum += i
+        end
+        
+        puts total
+
+You can also generate a github flavored markdown fenced code version.
+
+    gen.fenced_code_block(*some_code)
+
+Produces
+
+    ```
+    # add it up
+    total = [1, 2, 3, 4].inject do |sum, i|
+      sum += i
+    end
+    
+    puts total
+    ```
 
 Contributing
 ------------

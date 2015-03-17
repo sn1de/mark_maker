@@ -12,4 +12,5 @@ end
 # format and generating markdown documents from that source in
 # a line by line method.
 module MarkMaker
+  FENCE = "```"
 end

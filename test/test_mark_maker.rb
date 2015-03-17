@@ -87,4 +87,14 @@ class TestMarkMaker < Minitest::Test
       assert_match(/^\s{4}#{c}$/, m)
     end
   end
+
+  def test_fenced_code_block_generation
+    content = ["a = 1", "b = 2", "c = 3"]
+    gen = MarkMaker::Generator.new
+    markup = gen.fenced_code_block(*content)
+    assert(markup.length == content.length + 2, "Length of markup should equal the content plus the two fences.")
+    assert(markup.slice(1, content.length) == content, "The code body of the markup should match the original content exactly.")
+    assert(markup.first == MarkMaker::FENCE, "Markup should start with the code fence.")
+    assert(markup.last == MarkMaker::FENCE, "Markup should end with the code fence.")
+  end
 end

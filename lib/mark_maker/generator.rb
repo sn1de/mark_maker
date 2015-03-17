@@ -52,5 +52,14 @@ module MarkMaker
       content.each { |c| block << code(c) }
       block
     end
+
+    # creates a github flavored markdown fenced code block
+    def fenced_code_block(*content)
+      block = []
+      block << MarkMaker::FENCE
+      content.each { |c| block << c }
+      block << MarkMaker::FENCE
+      block
+    end
   end
 end
