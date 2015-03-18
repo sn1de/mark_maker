@@ -42,22 +42,24 @@ Produces
 
 Produces
 
- - gold
- - silver
- - bronze
+     - gold
+     - silver
+     - bronze
 
 Or a numbered list with...
 
     gen.numbers(*list_content)
 
- 1. gold
- 2. silver
- 3. bronze
+Produces
+
+     1. gold
+     2. silver
+     3. bronze
 
 ### Code Examples
 
 Standard markdown code blocks and embedding are supported, as well as github
-flavored markdown fenced code blocks
+flavored markdown fenced code blocks.
 
     some_code = [ "# add it up",
                   "total = [1, 2, 3, 4].inject do |sum, i|",
@@ -106,7 +108,7 @@ Produces
     puts total
     ```
 
-Rendering a beautiful code block like so ...
+Rendering beautifully highlighted code like so, if you are viewing this on github.
 
 ```ruby
 # add it up

@@ -24,13 +24,7 @@ doc << gen.header2("Installation")
 doc << ""
 doc << "Add this line to your application's Gemfile:"
 doc << ""
-
-# ```ruby
-
 doc << gen.code("gem 'mark_maker'")
-
-# ```
-
 doc << ""
 doc << "And then execute:"
 doc << ""
@@ -60,19 +54,21 @@ doc << ""
 doc << gen.code("list_content = ['gold', 'silver', 'bronze']")
 doc << gen.code("gen.bullets(*list_content)")
 doc << "\nProduces\n\n"
-doc << gen.bullets(*list_content)
+doc << gen.code_block(*gen.bullets(*list_content))
 doc << ""
 doc << "Or a numbered list with..."
 doc << ""
 numbered_code = "gen.numbers(*list_content)"
 doc << gen.code(numbered_code)
 doc << ""
-doc << eval(numbered_code)
+doc << "Produces"
+doc << ""
+doc << gen.code_block(*eval(numbered_code))
 doc << ""
 doc << gen.header3("Code Examples")
 doc << ""
 doc << "Standard markdown code blocks and embedding are supported, as well as github"
-doc << "flavored markdown fenced code blocks"
+doc << "flavored markdown fenced code blocks."
 doc << ""
 sample_block = <<-EOT.split("\n")
 some_code = [ "# add it up",
@@ -106,7 +102,7 @@ doc << "Produces"
 doc << ""
 doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code_language}"))
 doc << ""
-doc << "Rendering a beautiful code block like so ..."
+doc << "Rendering beautifully highlighted code like so, if you are viewing this on github."
 doc << ""
 doc << eval("#{sample_block.join}\n#{fenced_code_language}")
 doc << ""
