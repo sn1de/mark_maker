@@ -97,6 +97,19 @@ doc << "Produces"
 doc << ""
 doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code}\n"))
 doc << ""
+doc << "You can also include a language in a fenced code block."
+doc << ""
+fenced_code_language = "gen.fenced_code_language('ruby', *some_code)"
+doc << gen.code(fenced_code_language)
+doc << ""
+doc << "Produces"
+doc << ""
+doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code_language}"))
+doc << ""
+doc << "Rendering a beautiful code block like so ..."
+doc << ""
+doc << eval("#{sample_block.join}\n#{fenced_code_language}")
+doc << ""
 doc << gen.header2("Contributing")
 doc << ""
 doc << gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),

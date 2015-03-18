@@ -61,5 +61,14 @@ module MarkMaker
       block << MarkMaker::FENCE
       block
     end
+
+    # creates a github flavored markdown fenced code block that
+    # specifies the language for syntax highlighting purposes
+    def fenced_code_language(lang, *content)
+      block = []
+      block << MarkMaker::FENCE + lang
+      content.each { |c| block << c }
+      block << MarkMaker::FENCE
+    end
   end
 end

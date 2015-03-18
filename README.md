@@ -91,6 +91,32 @@ Produces
     puts total
     ```
 
+You can also include a language in a fenced code block.
+
+    gen.fenced_code_language('ruby', *some_code)
+
+Produces
+
+    ```ruby
+    # add it up
+    total = [1, 2, 3, 4].inject do |sum, i|
+      sum += i
+    end
+    
+    puts total
+    ```
+
+Rendering a beautiful code block like so ...
+
+```ruby
+# add it up
+total = [1, 2, 3, 4].inject do |sum, i|
+  sum += i
+end
+
+puts total
+```
+
 Contributing
 ------------
 
