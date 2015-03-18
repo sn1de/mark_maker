@@ -23,9 +23,7 @@ module MarkMaker
     end
 
     def bullets(*content)
-      bullet_list = []
-      content.each { |li| bullet_list << bullet(li) }
-      bullet_list
+      content.map { |li| bullet(li) }
     end
 
     def number(content, number = 1)
@@ -33,10 +31,8 @@ module MarkMaker
     end
 
     def numbers(*content)
-      numbered_list = []
       current_number = 0
-      content.each { |li| numbered_list << number(li, current_number += 1) }
-      numbered_list
+      content.map { |li| number(li, current_number += 1) }
     end
 
     def link(label, url)
@@ -48,26 +44,21 @@ module MarkMaker
     end
 
     def code_block(*content)
-      block = []
-      content.each { |c| block << code(c) }
-      block
+      content.map { |c| code(c) }
     end
 
     # creates a github flavored markdown fenced code block
     def fenced_code_block(*content)
-      block = []
+      block = *MarkMaker::FENCE
+      block.push(*content)
       block << MarkMaker::FENCE
-      content.each { |c| block << c }
-      block << MarkMaker::FENCE
-      block
     end
 
     # creates a github flavored markdown fenced code block that
     # specifies the language for syntax highlighting purposes
     def fenced_code_language(lang, *content)
-      block = []
-      block << MarkMaker::FENCE + lang
-      content.each { |c| block << c }
+      block = *MarkMaker::FENCE + lang
+      block.push(*content)
       block << MarkMaker::FENCE
     end
   end
