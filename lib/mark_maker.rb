@@ -13,4 +13,5 @@ end
 # a line by line method.
 module MarkMaker
   FENCE = "```"
+  EMPHASIS = "*"
 end

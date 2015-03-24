@@ -61,5 +61,9 @@ module MarkMaker
       block.push(*content)
       block << MarkMaker::FENCE
     end
+
+    def emphasis(content)
+      "#{MarkMaker::EMPHASIS}#{content}#{MarkMaker::EMPHASIS}"
+    end
   end
 end

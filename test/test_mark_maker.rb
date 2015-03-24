@@ -108,4 +108,11 @@ class TestMarkMaker < Minitest::Test
     assert(markup.first == MarkMaker::FENCE + lang, "Markup should start with the code fence and the language.")
     assert(markup.last == MarkMaker::FENCE, "Markup should end with the code fence.")
   end
+
+  def test_emphasis
+    content = "emphasize this"
+    gen = MarkMaker::Generator.new
+    markup = gen.emphasis(content)
+    assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS)}$/, markup)
+  end
 end

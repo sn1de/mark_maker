@@ -38,7 +38,7 @@ doc << gen.header2("Usage")
 doc << ""
 doc << "MarkMaker provides line oriented conversion of content to markdown elements. It"
 doc << "currently supports first, second and third level headings, links, bullets, numbered"
-doc << "bullets and code markdown. See #{__FILE__} for the code used to generate this"
+doc << "bullets, #{gen.emphasis('emphasis')} and code markdown. See #{__FILE__} for the code used to generate this"
 doc << "document and a sample of all these markdown generators in action."
 doc << ""
 doc << gen.header3("Header Example")
