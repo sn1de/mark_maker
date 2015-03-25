@@ -49,21 +49,25 @@ module MarkMaker
 
     # creates a github flavored markdown fenced code block
     def fenced_code_block(*content)
-      block = *MarkMaker::FENCE
+      block = *FENCE
       block.push(*content)
-      block << MarkMaker::FENCE
+      block << FENCE
     end
 
     # creates a github flavored markdown fenced code block that
     # specifies the language for syntax highlighting purposes
     def fenced_code_language(lang, *content)
-      block = *MarkMaker::FENCE + lang
+      block = *FENCE + lang
       block.push(*content)
-      block << MarkMaker::FENCE
+      block << FENCE
     end
 
     def emphasis(content)
-      "#{MarkMaker::EMPHASIS}#{content}#{MarkMaker::EMPHASIS}"
+      "#{EMPHASIS}#{content}#{EMPHASIS}"
+    end
+
+    def strong(content)
+      EMPHASIS * 2 + content + EMPHASIS * 2
     end
   end
 end
