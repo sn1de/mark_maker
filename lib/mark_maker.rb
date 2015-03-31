@@ -1,10 +1,12 @@
 require "mark_maker/version"
 require "mark_maker/generator"
 
+# rubocop:disable Lint/HandleExceptions
 begin
   require "pry"
 rescue LoadError
 end
+# rubocop:enable Lint/HandleExceptions
 
 # MarkMaker is a markdown generation capability. It is intended to be
 # very straightforward, non-tricky and easy to expand upon going

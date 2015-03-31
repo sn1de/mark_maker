@@ -119,6 +119,34 @@ end
 puts total
 ```
 
+### Table Example
+
+      header, separator = gen.table_header("Col One", "Col Two", "Col Three")
+      puts header
+      puts separator
+      puts gen.table_row("First", "A", "$3.99")
+      puts gen.table_row("Second", "B", "$14.00")
+      puts gen.table_row("Third", "C", "$1,034.50")
+
+Produces this terribly ugly markdown ...
+
+```
+|Col One|Col Two|Col Three|
+|-------|-------|---------|
+|First|A|$3.99|
+|Second|B|$14.00|
+|Third|C|$1,034.50|
+```
+
+Which gives you this stunning HTML table ...
+
+|Col One|Col Two|Col Three|
+|-------|-------|---------|
+|First|A|$3.99|
+|Second|B|$14.00|
+|Third|C|$1,034.50|
+
+
 Contributing
 ------------
 

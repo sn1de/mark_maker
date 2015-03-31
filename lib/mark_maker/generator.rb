@@ -69,5 +69,16 @@ module MarkMaker
     def strong(content)
       EMPHASIS * 2 + content + EMPHASIS * 2
     end
+
+    def table_header(*content)
+      [
+        content.inject("|") { |a, e| a + "#{e}|" },
+        content.inject("|") { |a, e| a + "-" * e.size + "|" }
+      ]
+    end
+
+    def table_row(*content)
+      content.inject("|") { |a, e| a << e << "|" }
+    end
   end
 end

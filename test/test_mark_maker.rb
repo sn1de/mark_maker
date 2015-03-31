@@ -122,5 +122,20 @@ class TestMarkMaker < Minitest::Test
     markup = gen.strong(content)
     assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS * 2)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS * 2)}$/, markup)
   end
+
+  def test_table_header_generation
+    content = ["Col One", "Col Two", "Col 3"]
+    gen  = MarkMaker::Generator.new
+    line1, line2 = gen.table_header(*content)
+    assert_match(/^\|#{Regexp.quote(content[0])}\|#{Regexp.quote(content[1])}\|#{Regexp.quote(content[2])}\|$/, line1)
+    assert_match(/^\|-{#{content[0].size}}\|-{#{content[1].size}}\|-{#{content[2].size}}\|$/, line2)
+  end
+
+  def test_table_row_generation
+    content = ["A", "Two", "$3.99"]
+    gen  = MarkMaker::Generator.new
+    row = gen.table_row(*content)
+    assert_match(/^\|#{Regexp.quote(content[0])}\|#{Regexp.quote(content[1])}\|#{Regexp.quote(content[2])}\|$/, row)
+  end
 end
 

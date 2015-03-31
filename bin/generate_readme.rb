@@ -14,62 +14,71 @@
 # examples. So here goes ... extreme readme driven development!
 
 require 'mark_maker'
-doc = []
+
+def capture_stdout
+  out = StringIO.new
+  $stdout = out
+  yield
+  return out
+ensure
+  $stdout = STDOUT
+end
+
 gen = MarkMaker::Generator.new
-doc << gen.header1("MarkMaker")
-doc << ""
-doc << "Programatically generate markdown documents."
-doc << ""
-doc << gen.header2("Installation")
-doc << ""
-doc << "Add this line to your application's Gemfile:"
-doc << ""
-doc << gen.code("gem 'mark_maker'")
-doc << ""
-doc << "And then execute:"
-doc << ""
-doc << gen.code("$ bundle")
-doc << ""
-doc << "Or install it yourself as:"
-doc << ""
-doc << gen.code("$ gem install mark_maker")
-doc << ""
-doc << gen.header2("Usage")
-doc << ""
-doc << "MarkMaker provides line oriented conversion of content to markdown elements. It"
-doc << "currently supports first, second and third level headings, links, bullets, numbered"
-doc << "bullets, #{gen.emphasis('emphasis')}, #{gen.strong('strong')} and code markdown. See #{__FILE__} for the code used to generate this"
-doc << "document and a sample of all these markdown generators in action."
-doc << ""
-doc << gen.header3("Header Example")
+puts gen.header1("MarkMaker")
+puts ""
+puts "Programatically generate markdown documents."
+puts ""
+puts gen.header2("Installation")
+puts ""
+puts "Add this line to your application's Gemfile:"
+puts ""
+puts gen.code("gem 'mark_maker'")
+puts ""
+puts "And then execute:"
+puts ""
+puts gen.code("$ bundle")
+puts ""
+puts "Or install it yourself as:"
+puts ""
+puts gen.code("$ gem install mark_maker")
+puts ""
+puts gen.header2("Usage")
+puts ""
+puts "MarkMaker provides line oriented conversion of content to markdown elements. It"
+puts "currently supports first, second and third level headings, links, bullets, numbered"
+puts "bullets, #{gen.emphasis('emphasis')}, #{gen.strong('strong')} and code markdown. See #{__FILE__} for the code used to generate this"
+puts "document and a sample of all these markdown generators in action."
+puts ""
+puts gen.header3("Header Example")
 example_header = "Let It Begin"
-doc << gen.code("gen = MarkMaker::Generator.new")
-doc << gen.code("gen.header1('#{example_header}'')")
-doc << "\nProduces\n\n"
-gen.header1(example_header).lines.map { |l| doc << gen.code(l) }
-doc << ""
-doc << gen.header3("Bulleted List Example")
+puts gen.code("gen = MarkMaker::Generator.new")
+puts gen.code("gen.header1('#{example_header}'')")
+puts "\nProduces\n\n"
+gen.header1(example_header).lines.map { |l| puts gen.code(l) }
+puts ""
+puts gen.header3("Bulleted List Example")
 list_content = ['gold', 'silver', 'bronze']
-doc << ""
-doc << gen.code("list_content = ['gold', 'silver', 'bronze']")
-doc << gen.code("gen.bullets(*list_content)")
-doc << "\nProduces\n\n"
-doc << gen.code_block(*gen.bullets(*list_content))
-doc << ""
-doc << "Or a numbered list with..."
-doc << ""
+puts ""
+puts gen.code("list_content = ['gold', 'silver', 'bronze']")
+puts gen.code("gen.bullets(*list_content)")
+puts "\nProduces\n\n"
+puts gen.code_block(*gen.bullets(*list_content))
+puts ""
+puts "Or a numbered list with..."
+puts ""
 numbered_code = "gen.numbers(*list_content)"
-doc << gen.code(numbered_code)
-doc << ""
-doc << "Produces"
-doc << ""
-doc << gen.code_block(*eval(numbered_code))
-doc << ""
-doc << gen.header3("Code Examples")
-doc << ""
-doc << "Standard markdown code blocks and embedding are supported, as well as github"
-doc << "flavored markdown fenced code blocks."
-doc << ""
+puts gen.code(numbered_code)
+puts ""
+puts "Produces"
+puts ""
+puts gen.code_block(*eval(numbered_code))
+puts ""
+puts gen.header3("Code Examples")
+puts ""
+puts "Standard markdown code blocks and embedding are supported, as well as github"
+puts "flavored markdown fenced code blocks."
+puts ""
 sample_block = <<-EOT.split("\n")
 some_code = [ "# add it up",
               "total = [1, 2, 3, 4].inject do |sum, i|",
@@ -79,50 +88,72 @@ some_code = [ "# add it up",
               "puts total" ]
 EOT
 execution_block = "gen.code_block(*some_code)"
-doc << gen.code_block(*sample_block, execution_block)
-doc << ""
-doc << "Produces\n\n"
-doc << gen.code_block(*gen.code_block(*eval(sample_block.join)))
-doc << ""
-doc << "You can also generate a github flavored markdown fenced code version."
+puts gen.code_block(*sample_block, execution_block)
+puts ""
+puts "Produces\n\n"
+puts gen.code_block(*gen.code_block(*eval(sample_block.join)))
+puts ""
+puts "You can also generate a github flavored markdown fenced code version."
 fenced_code = "gen.fenced_code_block(*some_code)"
-doc << ""
-doc << gen.code(fenced_code)
-doc << ""
-doc << "Produces"
-doc << ""
-doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code}\n"))
-doc << ""
-doc << "You can also include a language in a fenced code block."
-doc << ""
+puts ""
+puts gen.code(fenced_code)
+puts ""
+puts "Produces"
+puts ""
+puts gen.code_block(*eval("#{sample_block.join}\n#{fenced_code}\n"))
+puts ""
+puts "You can also include a language in a fenced code block."
+puts ""
 fenced_code_language = "gen.fenced_code_language('ruby', *some_code)"
-doc << gen.code(fenced_code_language)
-doc << ""
-doc << "Produces"
-doc << ""
-doc << gen.code_block(*eval("#{sample_block.join}\n#{fenced_code_language}"))
-doc << ""
-doc << "Rendering beautifully highlighted code like so, if you are viewing this on github."
-doc << ""
-doc << eval("#{sample_block.join}\n#{fenced_code_language}")
-doc << ""
-doc << gen.header2("Contributing")
-doc << ""
-doc << gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),
+puts gen.code(fenced_code_language)
+puts ""
+puts "Produces"
+puts ""
+puts gen.code_block(*eval("#{sample_block.join}\n#{fenced_code_language}"))
+puts ""
+puts "Rendering beautifully highlighted code like so, if you are viewing this on github."
+puts ""
+puts eval("#{sample_block.join}\n#{fenced_code_language}")
+puts ""
+puts gen.header3("Table Example")
+puts ""
+table_code = <<-EOT
+  header, separator = gen.table_header("Col One", "Col Two", "Col Three")
+  puts header
+  puts separator
+  puts gen.table_row("First", "A", "$3.99")
+  puts gen.table_row("Second", "B", "$14.00")
+  puts gen.table_row("Third", "C", "$1,034.50")
+EOT
+puts gen.code_block(*table_code.split("\n"))
+puts ""
+puts "Produces this terribly ugly markdown ..."
+puts ""
+table_markdown = capture_stdout do 
+  eval(table_code)
+end
+puts gen.fenced_code_block(*table_markdown.string.split("\n"))
+puts ""
+puts "Which gives you this stunning HTML table ..."
+puts ""
+puts eval(table_code)
+puts ""
+puts gen.header2("Contributing")
+puts ""
+puts gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),
                    "Create your feature branch (`git checkout -b my-new-feature`)",
                    "Commit your changes (`git commit -am 'Add some feature'`)",
                    "Push to the branch (`git push origin my-new-feature`)",
                    "Create a new Pull Request")
-doc << ""
-doc << gen.header2("About This README")
-doc << ""
-doc << "This readme document is created using MarkMaker. To modify it, edit the code"
-doc << "in #{__FILE__} and then run the 'readme' rake task to generate and overwrite the"
-doc << "existing README.md"
-doc << ""
-doc << gen.code("vi #{__FILE__}")
-doc << gen.code("rake readme")
-doc << ""
-doc << "I'm calling this Extreme #{gen.link("Readme Driven Development", "http://tom.preston-werner.com/2010/08/23/readme-driven-development.html")}."
-doc << "It's kind of like #{gen.link("Inception", "http://en.wikipedia.org/wiki/Inception")} ;)"
-puts doc
+puts ""
+puts gen.header2("About This README")
+puts ""
+puts "This readme document is created using MarkMaker. To modify it, edit the code"
+puts "in #{__FILE__} and then run the 'readme' rake task to generate and overwrite the"
+puts "existing README.md"
+puts ""
+puts gen.code("vi #{__FILE__}")
+puts gen.code("rake readme")
+puts ""
+puts "I'm calling this Extreme #{gen.link("Readme Driven Development", "http://tom.preston-werner.com/2010/08/23/readme-driven-development.html")}."
+puts "It's kind of like #{gen.link("Inception", "http://en.wikipedia.org/wiki/Inception")} ;)"
