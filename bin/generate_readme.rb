@@ -47,7 +47,8 @@ puts gen.header2("Usage")
 puts ""
 puts "MarkMaker provides line oriented conversion of content to markdown elements. It"
 puts "currently supports first, second and third level headings, links, bullets, numbered"
-puts "bullets, #{gen.emphasis('emphasis')}, #{gen.strong('strong')} and code markdown. See #{__FILE__} for the code used to generate this"
+puts "bullets, #{gen.emphasis('emphasis')}, #{gen.strong('strong')}, code"
+puts "and basic table markdown. See #{__FILE__} for the code used to generate this"
 puts "document and a sample of all these markdown generators in action."
 puts ""
 puts gen.header3("Header Example")

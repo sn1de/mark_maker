@@ -23,7 +23,8 @@ Usage
 
 MarkMaker provides line oriented conversion of content to markdown elements. It
 currently supports first, second and third level headings, links, bullets, numbered
-bullets, *emphasis*, **strong** and code markdown. See bin/generate_readme.rb for the code used to generate this
+bullets, *emphasis*, **strong**, code
+and basic table markdown. See bin/generate_readme.rb for the code used to generate this
 document and a sample of all these markdown generators in action.
 
 ### Header Example
