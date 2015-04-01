@@ -59,7 +59,7 @@ Produces
 
 ### Code Examples
 
-Standard markdown code blocks and embedding are supported, as well as github
+Standard markdown code blocks and `code span` are supported, as well as github
 flavored markdown fenced code blocks.
 
     some_code = [ "# add it up",

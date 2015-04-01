@@ -14,6 +14,7 @@ end
 # format and generating markdown documents from that source in
 # a line by line method.
 module MarkMaker
-  FENCE = "```"
+  CODE_TIC = "`"
+  FENCE = CODE_TIC * 3
   EMPHASIS = "*"
 end

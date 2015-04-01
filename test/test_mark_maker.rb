@@ -78,6 +78,12 @@ class TestMarkMaker < Minitest::Test
     assert_match(/\s{4}var = code\(\)$/, markup)
   end
 
+  def test_code_span_generation
+    gen = MarkMaker::Generator.new
+    markup = "Some #{gen.code_span('a = b + c')} here."
+    assert_match(/^Some #{MarkMaker::CODE_TIC}a = b \+ c#{MarkMaker::CODE_TIC} here.$/, markup)
+  end
+
   def test_code_block_generation
     content = ["a = 1", "b = 2", "c = 3"]
     gen = MarkMaker::Generator.new

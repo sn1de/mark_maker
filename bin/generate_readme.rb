@@ -77,7 +77,7 @@ puts gen.code_block(*eval(numbered_code))
 puts ""
 puts gen.header3("Code Examples")
 puts ""
-puts "Standard markdown code blocks and embedding are supported, as well as github"
+puts "Standard markdown code blocks and #{gen.code_span('code span')} are supported, as well as github"
 puts "flavored markdown fenced code blocks."
 puts ""
 sample_block = <<-EOT.split("\n")

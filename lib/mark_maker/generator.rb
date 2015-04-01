@@ -43,6 +43,10 @@ module MarkMaker
       "    #{content}"
     end
 
+    def code_span(content)
+      "#{CODE_TIC}#{content}#{CODE_TIC}"
+    end
+
     def code_block(*content)
       content.map { |c| code(c) }
     end
