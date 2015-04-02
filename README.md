@@ -3,10 +3,12 @@ MarkMaker
 
 Programatically generate markdown documents.
 
-Installation
-------------
+Intended Use
+============
 
-Add this line to your application's Gemfile:
+The mark_maker gem provides a set of methods that take text content and
+convert it to various markdown elements. The primary use case is simple
+conversion of something like a JSON document into a markdown document.
 
     gem 'mark_maker'
 
