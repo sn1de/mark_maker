@@ -4,11 +4,38 @@ MarkMaker
 Programatically generate markdown documents.
 
 Intended Use
-============
+------------
 
 The mark_maker gem provides a set of methods that take text content and
 convert it to various markdown elements. The primary use case is simple
 conversion of something like a JSON document into a markdown document.
+
+The initial development goal is to provide
+support for all of the markdown supported operations, at least in their basic form. What
+I mean by basic is that you provide a 'chunk' of content and the mark_maker `Generator`
+will return that content in the corresponding markdown format. For grouped content, variable
+parameters will be provided on the method call to allow for things like correctly numbered
+bullet lists. Each call to the generator is treated as a separate
+markdown operation. So things like link definitions aren't going to be supported,
+at least not in 1.0
+
+Speaking of versioning, I'll use semantic versioning to indicate when new markdown
+capabilities are added. I'll release 1.0 when I feel like it supports a complete set
+of markdown capabilites withing the constraint set above. This will also include some
+extended capabilities from expanded syntaxes like GitHub flavored markdown. Methods
+generating non-core markdown will be noted in the documentation for that method.
+
+If all goes well, and it appears anyone is using this gem, then a 2.0 release is
+envisioned that will add a `Document` class that will provide a
+more holistic layer of capabilities. For example, the aformentioned reference style
+links would be nice. As would the ability to have an arbitrarily long string broken
+down into nicely formatted hard break paragraphs. Same goes for nicely indented multi-line
+bullets, etc.
+
+Installation
+------------
+
+Add this line to your application's Gemfile:
 
     gem 'mark_maker'
 
