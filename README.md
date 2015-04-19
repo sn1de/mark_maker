@@ -20,8 +20,8 @@ markdown operation. So things like link definitions aren't going to be supported
 at least not in 1.0
 
 Speaking of versioning, I'll use semantic versioning to indicate when new markdown
-capabilities are added. I'll release 1.0 when I feel like it supports a complete set
-of markdown capabilites withing the constraint set above. This will also include some
+capabilities are added. I'll release 1.0 when I feel like it supports set
+of markdown capabilites that fulfill the intended use. This will also include some
 extended capabilities from expanded syntaxes like GitHub flavored markdown. Methods
 generating non-core markdown will be noted in the documentation for that method.
 
