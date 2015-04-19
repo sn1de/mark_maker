@@ -143,5 +143,14 @@ class TestMarkMaker < Minitest::Test
     row = gen.table_row(*content)
     assert_match(/^\|#{Regexp.quote(content[0])}\|#{Regexp.quote(content[1])}\|#{Regexp.quote(content[2])}\|$/, row)
   end
+
+  def test_block_quote_generation
+    content = ["Line 1", "Line 2", "Line 3"]
+    gen = MarkMaker::Generator.new
+    markup = gen.block_quote(*content)
+    content.zip(markup).each do |c, m| 
+      assert_match(/^> #{Regexp.quote(c)}$/, m)
+    end
+  end
 end
 

@@ -84,5 +84,9 @@ module MarkMaker
     def table_row(*content)
       content.inject("|") { |a, e| a << e << "|" }
     end
+
+    def block_quote(*content)
+      content.map { |c| "#{BLOCK_QUOTE} #{c}"}
+    end
   end
 end

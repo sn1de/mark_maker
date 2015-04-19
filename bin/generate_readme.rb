@@ -167,6 +167,29 @@ puts "Which gives you this stunning HTML table ..."
 puts ""
 puts eval(table_code)
 puts ""
+puts gen.header3("Block Quotes Example")
+puts ""
+block_quote_code = <<-EOT
+content = <<-QUOTE
+If you want to quote, you'll get a quote.
+Warning, it will just quote line by line, not break it up nicely.
+QUOTE
+puts gen.block_quote(*content.split("\n"))
+EOT
+puts gen.fenced_code_block(*block_quote_code.split("\n"))
+puts ""
+puts "Produces the markdown ..."
+puts ""
+block_quote_markdown = capture_stdout do
+  eval(block_quote_code)
+end
+puts gen.fenced_code_block(*block_quote_markdown.string.split("\n"))
+puts ""
+puts ""
+puts "Which looks like this when viewed as HTML..."
+puts ""
+puts eval(block_quote_code)
+puts ""
 puts gen.header2("Contributing")
 puts ""
 puts gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),

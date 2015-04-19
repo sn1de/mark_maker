@@ -177,6 +177,31 @@ Which gives you this stunning HTML table ...
 |Third|C|$1,034.50|
 
 
+### Block Quotes Example
+
+```
+content = <<-QUOTE
+If you want to quote, you'll get a quote.
+Warning, it will just quote line by line, not break it up nicely.
+QUOTE
+puts gen.block_quote(*content.split("
+"))
+```
+
+Produces the markdown ...
+
+```
+> If you want to quote, you'll get a quote.
+> Warning, it will just quote line by line, not break it up nicely.
+```
+
+
+Which looks like this when viewed as HTML...
+
+> If you want to quote, you'll get a quote.
+> Warning, it will just quote line by line, not break it up nicely.
+
+
 Contributing
 ------------
 

@@ -17,4 +17,5 @@ module MarkMaker
   CODE_TIC = "`"
   FENCE = CODE_TIC * 3
   EMPHASIS = "*"
+  BLOCK_QUOTE = ">"
 end
