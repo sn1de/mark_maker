@@ -152,5 +152,102 @@ class TestMarkMaker < Minitest::Test
       assert_match(/^> #{Regexp.quote(c)}$/, m)
     end
   end
+
+  # This test should always pass. It is here simple to validate the proper
+  # usage of a heredoc as a test method
+
+  def test_heredoc_method
+    desired_output = <<-EOS.strip_heredoc
+      This should contain no intents.
+
+      It should be 3 lines long.
+    EOS
+    test_output = "This should contain no intents.\n\nIt should be 3 lines long.\n"
+    assert_equal(desired_output, test_output, "Output must exactly match.")
+  end
+
+  def test_column_width
+    gen = MarkMaker::Generator.new
+    assert_equal(5, gen.column_width("One", "Two", "12345", "Four"))
+  end
+
+  def test_pretty_table_generation
+    pretty_table = <<-EOS.strip_heredoc
+      |Col One|Col Two|Col Three|
+      |-------|-------|---------|
+      |First  |A      |$3.99    |
+      |Second |BC     |$14.00   |
+    EOS
+    table_data = [
+      ["Col One", "Col Two", "Col Three"],
+      ["First", "A", "$3.99"],
+      ["Second", "BC", "$14.00"]
+    ]
+    gen = MarkMaker::Generator.new
+    markup = gen.table(*table_data)
+    assert_equal(pretty_table, markup)
+  end
+
+  def test_left_justify
+    test_justified = ["a  ", "bbb", "cc "]
+    gen = MarkMaker::Generator.new
+    justified = gen.left_justify("a", "bbb", "cc")
+    assert_equal(test_justified, justified)
+  end
+
+  def test_right_justify
+    test_justified = ["  a", "bbb", " cc"]
+    gen = MarkMaker::Generator.new
+    gen_justified = gen.right_justify("a", "bbb", "cc")
+    assert_equal(test_justified, gen_justified)
+  end
+
+  def test_center_justify
+    test_justified = ["  a  ", "bbbbb", " ccc ", " dd  "]
+    gen = MarkMaker::Generator.new
+    gen_justified = gen.center_justify("a", "bbbbb", "ccc", "dd")
+    assert_equal(test_justified, gen_justified)
+  end
+
+  def test_column_width
+    gen = MarkMaker::Generator.new
+    width = gen.column_width("a", "bbb", "ccccc", "dd")
+    assert_equal(5, width)
+  end
+
+  def test_centered_margins
+    gen = MarkMaker::Generator.new
+    left, right = gen.centered_margins(5, "cc")
+    assert_equal(1, left)
+    assert_equal(2, right)
+  end
+
+  # def test_right_justify_table_column
+  #   right_justified = <<-EOS.strip_heredoc
+  #     |Justified  |
+  #     |----------:|
+  #     |          a|
+  #     |bbbbbbbbbbb|
+  #     |        ccc|
+  #   EOS
+  #   gen = MarkMaker::Generator.new
+  #   markdown = gen.table("Justified", ?????)
+  #   assert_equal(right_justified, markup, "Column content should be right justified.")
+  # end
+
+
+  # def test_pretty_table_justified_generation
+  #   pretty_table = <<-EOS.strip_heredoc
+  #     |Col One|Col Two|Col Three |Data Sized   |
+  #     |-------|-------|----------|-------------|
+  #     |First  |   A   |     $3.99|xxxxxxxxxxxxx|
+  #     |Second |   BC  |    $14.00|y            |
+  #     |Third  |  DEF  | $1,034.50|z            |
+  #     |Fourth |GHIJKLM|$10,123.45|a            |
+  #   EOS
+
+  #   markup = 'nada'
+  #   assert_equal(pretty_table, markup)
+  # end
 end
 
