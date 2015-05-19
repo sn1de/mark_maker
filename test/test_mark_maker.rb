@@ -171,27 +171,27 @@ class TestMarkMaker < Minitest::Test
     assert_equal(5, gen.column_width("One", "Two", "12345", "Four"))
   end
 
-  def test_pretty_table_generation
-    pretty_table = <<-EOS.strip_heredoc
-      |Col One|Col Two|Col Three|
-      |-------|-------|---------|
-      |First  |A      |$3.99    |
-      |Second |BC     |$14.00   |
-    EOS
-    table_data = [
-      ["Col One", "Col Two", "Col Three"],
-      ["First", "A", "$3.99"],
-      ["Second", "BC", "$14.00"]
-    ]
-    gen = MarkMaker::Generator.new
-    markup = gen.table(*table_data)
-    assert_equal(pretty_table, markup)
-  end
+  # def test_pretty_table_generation
+  #   pretty_table = <<-EOS.strip_heredoc
+  #     |Col One|Col Two|Col Three|
+  #     |-------|-------|---------|
+  #     |First  |A      |$3.99    |
+  #     |Second |BC     |$14.00   |
+  #   EOS
+  #   table_data = [
+  #     ["Col One", "Col Two", "Col Three"],
+  #     ["First", "A", "$3.99"],
+  #     ["Second", "BC", "$14.00"]
+  #   ]
+  #   gen = MarkMaker::Generator.new
+  #   markup = gen.table(*table_data)
+  #   assert_equal(pretty_table, markup)
+  # end
 
   def test_left_justify
-    test_justified = ["a  ", "bbb", "cc "]
+    test_justified = ["a   ", "bbb ", "cc  ", "d  d"]
     gen = MarkMaker::Generator.new
-    justified = gen.left_justify("a", "bbb", "cc")
+    justified = gen.left_justify("a", "bbb", "cc", "d  d")
     assert_equal(test_justified, justified)
   end
 
@@ -203,9 +203,9 @@ class TestMarkMaker < Minitest::Test
   end
 
   def test_center_justify
-    test_justified = ["  a  ", "bbbbb", " ccc ", " dd  "]
+    test_justified = ["  a  ", "bbbbb", " ccc ", " dd  ", "e ee "]
     gen = MarkMaker::Generator.new
-    gen_justified = gen.center_justify("a", "bbbbb", "ccc", "dd")
+    gen_justified = gen.center_justify("a", "bbbbb", "ccc", "dd", "e ee")
     assert_equal(test_justified, gen_justified)
   end
 
@@ -224,7 +224,7 @@ class TestMarkMaker < Minitest::Test
 
   # def test_right_justify_table_column
   #   right_justified = <<-EOS.strip_heredoc
-  #     |Justified  |
+  #     |  Justified|
   #     |----------:|
   #     |          a|
   #     |bbbbbbbbbbb|
