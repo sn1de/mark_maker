@@ -18,4 +18,7 @@ module MarkMaker
   FENCE = CODE_TIC * 3
   EMPHASIS = "*"
   BLOCK_QUOTE = ">"
+  LEFT_JUSTIFY = /^:-+$/
+  RIGHT_JUSTIFY = /^-+:$/
+  CENTER_JUSTIFY = /^:-+:$/
 end

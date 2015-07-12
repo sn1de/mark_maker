@@ -222,6 +222,36 @@ class TestMarkMaker < Minitest::Test
     assert_equal(2, right)
   end
 
+  def test_left_justification_indicators
+    assert_match(MarkMaker::LEFT_JUSTIFY, ":-")
+    assert_match(MarkMaker::LEFT_JUSTIFY, ":---------")
+    refute_match(MarkMaker::LEFT_JUSTIFY, "-")
+    refute_match(MarkMaker::LEFT_JUSTIFY, "-:")
+    refute_match(MarkMaker::LEFT_JUSTIFY, ":--:")
+    refute_match(MarkMaker::LEFT_JUSTIFY, "-----")
+    refute_match(MarkMaker::LEFT_JUSTIFY, "")
+  end
+
+  def test_right_justification_indicators
+    assert_match(MarkMaker::RIGHT_JUSTIFY, "-:")
+    assert_match(MarkMaker::RIGHT_JUSTIFY, "---------:")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, "-")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, ":---")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, ":--:")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, "-----")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, "")
+  end
+
+  def test_left_justification_indicators
+    assert_match(MarkMaker::CENTER_JUSTIFY, ":-:")
+    assert_match(MarkMaker::CENTER_JUSTIFY, ":---------:")
+    refute_match(MarkMaker::CENTER_JUSTIFY, "-")
+    refute_match(MarkMaker::CENTER_JUSTIFY, "-:")
+    refute_match(MarkMaker::CENTER_JUSTIFY, ":--")
+    refute_match(MarkMaker::CENTER_JUSTIFY, "-----")
+    refute_match(MarkMaker::CENTER_JUSTIFY, "")
+  end
+
   # def test_right_justify_table_column
   #   right_justified = <<-EOS.strip_heredoc
   #     |  Justified|
