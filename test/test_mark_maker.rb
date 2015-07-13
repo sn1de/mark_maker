@@ -230,6 +230,8 @@ class TestMarkMaker < Minitest::Test
     refute_match(MarkMaker::LEFT_JUSTIFY, ":--:")
     refute_match(MarkMaker::LEFT_JUSTIFY, "-----")
     refute_match(MarkMaker::LEFT_JUSTIFY, "")
+    refute_match(MarkMaker::LEFT_JUSTIFY, ":")
+    refute_match(MarkMaker::LEFT_JUSTIFY, "::")
   end
 
   def test_right_justification_indicators
@@ -240,16 +242,20 @@ class TestMarkMaker < Minitest::Test
     refute_match(MarkMaker::RIGHT_JUSTIFY, ":--:")
     refute_match(MarkMaker::RIGHT_JUSTIFY, "-----")
     refute_match(MarkMaker::RIGHT_JUSTIFY, "")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, ":")
+    refute_match(MarkMaker::RIGHT_JUSTIFY, "::")
   end
 
   def test_left_justification_indicators
     assert_match(MarkMaker::CENTER_JUSTIFY, ":-:")
     assert_match(MarkMaker::CENTER_JUSTIFY, ":---------:")
+    assert_match(MarkMaker::CENTER_JUSTIFY, "::")
     refute_match(MarkMaker::CENTER_JUSTIFY, "-")
     refute_match(MarkMaker::CENTER_JUSTIFY, "-:")
     refute_match(MarkMaker::CENTER_JUSTIFY, ":--")
     refute_match(MarkMaker::CENTER_JUSTIFY, "-----")
     refute_match(MarkMaker::CENTER_JUSTIFY, "")
+    refute_match(MarkMaker::CENTER_JUSTIFY, ":")
   end
 
   # def test_right_justify_table_column

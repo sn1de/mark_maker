@@ -20,5 +20,5 @@ module MarkMaker
   BLOCK_QUOTE = ">"
   LEFT_JUSTIFY = /^:-+$/
   RIGHT_JUSTIFY = /^-+:$/
-  CENTER_JUSTIFY = /^:-+:$/
+  CENTER_JUSTIFY = /^:-*:$/
 end
