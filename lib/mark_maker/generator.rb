@@ -100,9 +100,8 @@ module MarkMaker
     # optionally.
 
     def table(*content)
-
       columns = content.transpose
-      justified = columns.map { |c| left_justify(*c) } 
+      justified = columns.map { |c| left_justify(*c) }
       content = justified.transpose
       table = []
       if content.size >= 1
@@ -114,7 +113,7 @@ module MarkMaker
     end
 
     def block_quote(*content)
-      content.map { |c| "#{BLOCK_QUOTE} #{c}"}
+      content.map { |c| "#{BLOCK_QUOTE} #{c}" }
     end
 
     def left_justify(*content)
