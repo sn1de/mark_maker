@@ -163,9 +163,26 @@ table_markdown = capture_stdout do
 end
 puts gen.fenced_code_block(*table_markdown.string.split("\n"))
 puts ""
+puts "Or, you can pass all the rows in at once like so ..."
+puts ""
+pretty_table_code = <<-EOT
+  table_data = [
+    ["Col One", "Col Two", "Col Three"],
+    ["First", "A", "$3.99"],
+    ["Second", "B", "$14.00"],
+    ["Third", "C", "$1,034.50"]
+  ]
+  puts gen.table(*table_data)
+EOT
+puts gen.fenced_code_language('ruby', *pretty_table_code.split("\n"))
+puts "And get nicely justified markdown like this ..."
+pretty_table_markdown = capture_stdout do
+  eval(pretty_table_code)
+end
+puts gen.fenced_code_block(*pretty_table_markdown.string.split("\n"))
 puts "Which gives you this stunning HTML table ..."
 puts ""
-puts eval(table_code)
+puts eval(pretty_table_code)
 puts ""
 puts gen.header3("Block Quotes Example")
 puts ""

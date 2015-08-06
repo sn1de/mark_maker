@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'minitest_helper'
 
 class TestMarkMaker < Minitest::Test
@@ -171,22 +174,22 @@ class TestMarkMaker < Minitest::Test
     assert_equal(5, gen.column_width("One", "Two", "12345", "Four"))
   end
 
-  # def test_pretty_table_generation
-  #   pretty_table = <<-EOS.strip_heredoc
-  #     |Col One|Col Two|Col Three|
-  #     |-------|-------|---------|
-  #     |First  |A      |$3.99    |
-  #     |Second |BC     |$14.00   |
-  #   EOS
-  #   table_data = [
-  #     ["Col One", "Col Two", "Col Three"],
-  #     ["First", "A", "$3.99"],
-  #     ["Second", "BC", "$14.00"]
-  #   ]
-  #   gen = MarkMaker::Generator.new
-  #   markup = gen.table(*table_data)
-  #   assert_equal(pretty_table, markup)
-  # end
+  def test_pretty_table_generation
+    pretty_table = <<-EOS.strip_heredoc
+      |Col One|Col Two|Col Three|
+      |-------|-------|---------|
+      |First  |A      |$3.99    |
+      |Second |BC     |$14.00   |
+    EOS
+    table_data = [
+      ["Col One", "Col Two", "Col Three"],
+      ["First", "A", "$3.99"],
+      ["Second", "BC", "$14.00"]
+    ]
+    gen = MarkMaker::Generator.new
+    markup = gen.table(*table_data)
+    assert_equal(pretty_table, markup.join)
+  end
 
   def test_left_justify
     test_justified = ["a   ", "bbb ", "cc  ", "d  d"]

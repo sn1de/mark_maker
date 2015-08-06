@@ -100,6 +100,10 @@ module MarkMaker
     # optionally.
 
     def table(*content)
+
+      columns = content.transpose
+      justified = columns.map { |c| left_justify(*c) } 
+      content = justified.transpose
       table = []
       if content.size >= 1
         header, separator = table_header(*content[0])
