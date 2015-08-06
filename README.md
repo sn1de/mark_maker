@@ -155,8 +155,8 @@ puts total
       puts header
       puts separator
       puts gen.table_row("First", "A", "$3.99")
-      puts gen.table_row("Second", "B", "$14.00")
-      puts gen.table_row("Third", "C", "$1,034.50")
+      puts gen.table_row("Second", "BC", "$14.00")
+      puts gen.table_row("Third", "DEFGH", "$1,034.50")
 
 Produces this terribly ugly markdown ...
 
@@ -164,8 +164,8 @@ Produces this terribly ugly markdown ...
 |Col One|Col Two|Col Three|
 |-------|-------|---------|
 |First|A|$3.99|
-|Second|B|$14.00|
-|Third|C|$1,034.50|
+|Second|BC|$14.00|
+|Third|DEFGH|$1,034.50|
 ```
 
 Or, you can pass all the rows in at once like so ...
@@ -174,8 +174,8 @@ Or, you can pass all the rows in at once like so ...
   table_data = [
     ["Col One", "Col Two", "Col Three"],
     ["First", "A", "$3.99"],
-    ["Second", "B", "$14.00"],
-    ["Third", "C", "$1,034.50"]
+    ["Second", "BC", "$14.00"],
+    ["Third", "DEFGH", "$1,034.50"]
   ]
   puts gen.table(*table_data)
 ```
@@ -184,16 +184,16 @@ And get nicely justified markdown like this ...
 |Col One|Col Two|Col Three|
 |-------|-------|---------|
 |First  |A      |$3.99    |
-|Second |B      |$14.00   |
-|Third  |C      |$1,034.50|
+|Second |BC     |$14.00   |
+|Third  |DEFGH  |$1,034.50|
 ```
 Which gives you this stunning HTML table ...
 
 |Col One|Col Two|Col Three|
 |-------|-------|---------|
 |First  |A      |$3.99    |
-|Second |B      |$14.00   |
-|Third  |C      |$1,034.50|
+|Second |BC     |$14.00   |
+|Third  |DEFGH  |$1,034.50|
 
 
 ### Block Quotes Example
