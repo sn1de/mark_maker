@@ -249,7 +249,7 @@ class TestMarkMaker < Minitest::Test
     refute_match(MarkMaker::RIGHT_JUSTIFY, "::")
   end
 
-  def test_left_justification_indicators
+  def test_center_justification_indicators
     assert_match(MarkMaker::CENTER_JUSTIFY, ":-:")
     assert_match(MarkMaker::CENTER_JUSTIFY, ":---------:")
     assert_match(MarkMaker::CENTER_JUSTIFY, "::")
@@ -260,6 +260,22 @@ class TestMarkMaker < Minitest::Test
     refute_match(MarkMaker::CENTER_JUSTIFY, "")
     refute_match(MarkMaker::CENTER_JUSTIFY, ":")
   end
+
+  # def test_determine_justification
+  #   justifiers = ["-:", ":-", ":--:", "---:", ":---", "::", "---", "zzz"]
+  #   justifiers.each do |j|
+  #     case j
+  #     when MarkMaker::RIGHT_JUSTIFY
+  #       puts "#{j} will be right justified"
+  #     when MarkMaker::LEFT_JUSTIFY
+  #       puts "#{j} will be left justified"
+  #     when MarkMaker::CENTER_JUSTIFY
+  #       puts "#{j} will be center justified"
+  #     else
+  #       puts "#{j} is an invalid justification indicator"
+  #     end
+  #   end
+  # end
 
   # def test_right_justify_table_column
   #   right_justified = <<-EOS.strip_heredoc

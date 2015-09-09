@@ -168,6 +168,7 @@ puts ""
 pretty_table_code = <<-EOT
   table_data = [
     ["Col One", "Col Two", "Col Three"],
+    [":-", ":-:", "-:"],
     ["First", "A", "$3.99"],
     ["Second", "BC", "$14.00"],
     ["Third", "DEFGH", "$1,034.50"]

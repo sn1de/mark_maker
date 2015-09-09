@@ -101,7 +101,7 @@ module MarkMaker
 
     def table(*content)
       columns = content.transpose
-      justified = columns.map { |c| left_justify(*c) }
+      justified = columns.map { |c| justify(*c) }
       content = justified.transpose
       table = []
       if content.size >= 1
@@ -114,6 +114,21 @@ module MarkMaker
 
     def block_quote(*content)
       content.map { |c| "#{BLOCK_QUOTE} #{c}" }
+    end
+
+    def justify(*content)
+      # check for a justification marker in the second row
+      case content[1]
+      when MarkMaker::RIGHT_JUSTIFY
+        right_justify(*content)
+      when MarkMaker::LEFT_JUSTIFY
+        left_justify(*content)
+      when MarkMaker::CENTER_JUSTIFY
+        center_justify(*content)
+      else
+        # no justification indicator was found, use a default
+        left_justify(*content)
+      end
     end
 
     def left_justify(*content)
