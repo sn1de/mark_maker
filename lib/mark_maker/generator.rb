@@ -15,6 +15,33 @@ module MarkMaker
     def line_for_center
     end
 
+    # Justification indicators are a bit of a special case, because the way
+    # they actually work is the colon's proximity to the vertical | bars marking
+    # the table cells. This means that the center justification indicator, for
+    # example :-:, must have the colon directly adjacent to the left | and the
+    # right | in order to take effect, like so |:-:|. Any whitespace on either
+    # side will cause the center justification to be ignored and default to
+    # left justification. So the following *will not* work, |:-:   | or | :-: |.
+    # In fact the following, |   :-:|, will result in right justification. This
+    # means we must fill out justification indicators, not just pad them out
+    # with spaces, in order for justification markers to look good in our
+    # native markdown output (an important consideration in itself) as well
+    # as being honored and generating the intended HTML (both being equally
+    # important in the MarkDown philosophy).
+
+    # detect if the given table cell content is a justification indicator
+    def justification?(cell)
+      cell =~ MarkMaker::RIGHT_JUSTIFY ||
+        cell =~ MarkMaker::LEFT_JUSTIFY ||
+        cell =~ MarkMaker::CENTER_JUSTIFY
+    end
+
+    # Inspect the cell contents and return a justification indicator
+    # as the fill element if the cell is a justification directive.
+    def justified_fill(c, fill)
+      justification?(c) ? '-' : fill
+    end
+
     def header1(title)
       "#{title}\n#{line_for('=', title)}"
     end
@@ -104,11 +131,11 @@ module MarkMaker
       justified = columns.map { |c| justify(*c) }
       content = justified.transpose
       table = []
-      if content.size >= 1
-        header, separator = table_header(*content[0])
-        table << header << separator
-      end
-      content[1, content.size].each { |c| table << table_row(*c) }
+      # if content.size >= 1
+      #   header, separator = table_header(*content[0])
+      #   table << header << separator
+      # end
+      content[0, content.size].each { |c| table << table_row(*c) }
       table.map { |t| t + "\n" }
     end
 
@@ -120,37 +147,60 @@ module MarkMaker
       # check for a justification marker in the second row
       case content[1]
       when MarkMaker::RIGHT_JUSTIFY
-        right_justify(*content)
+        right_justify(' ', *content)
       when MarkMaker::LEFT_JUSTIFY
-        left_justify(*content)
+        left_justify(' ', *content)
       when MarkMaker::CENTER_JUSTIFY
-        center_justify(*content)
+        center_justify(' ', *content)
       else
         # no justification indicator was found, use a default
-        left_justify(*content)
+        left_justify(' ', *content)
       end
     end
 
-    def left_justify(*content)
+    def left_justify(fill, *content)
       width = column_width(*content)
-      content.map { |c| c + ' ' * (width - c.length) }
+
+      content.map { |c| c + justified_fill(c, fill) * (width - c.length) }
     end
 
-    def right_justify(*content)
+    def right_justify(fill, *content)
       width = column_width(*content)
-      content.map { |c| ' ' * (width - c.length) + c }
+
+      content.map { |c| justified_fill(c, fill) * (width - c.length) + c }
     end
 
-    def center_justify(*content)
+    def center_justify(fill, *content)
+      width = column_width(*content)
+
+      content.map do |c|
+        if justification?(c)
+          # special case here, as justification must be filled from
+          # the middle out in order to meet the markdown spec requirements
+          # that will trigger proper justification
+          f = []
+          f << c
+          f << 'a' * width
+          fill_justify(justified_fill(c, fill), *f)[0]
+        else
+          left, right = centered_margins(width, c)
+          justified_fill(c, fill) * left + c + justified_fill(c, fill) * right
+        end
+      end
+    end
+
+    def fill_justify(fill, *content)
       width = column_width(*content)
       content.map do |c|
-        left, right = centered_margins(width, c)
-        ' ' * left + c + ' ' * right
+        # split the cell in two and then add the fill character
+        # to the end of the first half of the cell to reach the
+        # justified width
+        c.insert(c.length / 2, fill * (width - c.length))
       end
     end
 
     def column_width(*content)
-      longest = content.reduce { |memo, s| memo.length > s.length ? memo : s }
+      longest = content.reduce { |a, e| a.length > e.length ? a : e }
       longest.length
     end
 

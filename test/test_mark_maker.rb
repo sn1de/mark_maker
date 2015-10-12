@@ -177,16 +177,19 @@ class TestMarkMaker < Minitest::Test
   def test_pretty_table_generation
     pretty_table = <<-EOS.strip_heredoc
       |Col One|Col Two|Col Three|
-      |-------|-------|---------|
-      |First  |A      |$3.99    |
-      |Second |BC     |$14.00   |
+      |:------|:-----:|--------:|
+      |First  |   A   |    $3.99|
+      |Second |  BC   |   $14.00|
+      |Third  | DEFGH |$1,034.50|
     EOS
     table_data = [
       ["Col One", "Col Two", "Col Three"],
+      [":-", ":-:", "-:"],
       ["First", "A", "$3.99"],
-      ["Second", "BC", "$14.00"]
+      ["Second", "BC", "$14.00"],
+      ["Third", "DEFGH", "$1,034.50"]
     ]
-    gen = MarkMaker::Generator.new
+  gen = MarkMaker::Generator.new
     markup = gen.table(*table_data)
     assert_equal(pretty_table, markup.join)
   end
@@ -194,21 +197,21 @@ class TestMarkMaker < Minitest::Test
   def test_left_justify
     test_justified = ["a   ", "bbb ", "cc  ", "d  d"]
     gen = MarkMaker::Generator.new
-    justified = gen.left_justify("a", "bbb", "cc", "d  d")
+    justified = gen.left_justify(' ', "a", "bbb", "cc", "d  d")
     assert_equal(test_justified, justified)
   end
 
   def test_right_justify
     test_justified = ["  a", "bbb", " cc"]
     gen = MarkMaker::Generator.new
-    gen_justified = gen.right_justify("a", "bbb", "cc")
+    gen_justified = gen.right_justify(' ', "a", "bbb", "cc")
     assert_equal(test_justified, gen_justified)
   end
 
   def test_center_justify
     test_justified = ["  a  ", "bbbbb", " ccc ", " dd  ", "e ee "]
     gen = MarkMaker::Generator.new
-    gen_justified = gen.center_justify("a", "bbbbb", "ccc", "dd", "e ee")
+    gen_justified = gen.center_justify(' ', "a", "bbbbb", "ccc", "dd", "e ee")
     assert_equal(test_justified, gen_justified)
   end
 
@@ -223,6 +226,24 @@ class TestMarkMaker < Minitest::Test
     left, right = gen.centered_margins(5, "cc")
     assert_equal(1, left)
     assert_equal(2, right)
+  end
+
+  def test_justify_detection
+    gen = MarkMaker::Generator.new
+    
+    assert(gen.justification?(":-"))
+    assert(gen.justification?(":-:"))
+    assert(gen.justification?("-:"))
+    assert(gen.justification?(":------"))
+    assert(gen.justification?(":------:"))
+    assert(gen.justification?(":-:"))
+    assert(gen.justification?("------:"))
+    refute(gen.justification?("stuff"))
+    refute(gen.justification?("stuff:it"))
+    refute(gen.justification?(":bad news"))
+    refute(gen.justification?("bad news:"))
+    refute(gen.justification?("---"))
+    refute(gen.justification?("-"))
   end
 
   def test_left_justification_indicators
@@ -259,6 +280,12 @@ class TestMarkMaker < Minitest::Test
     refute_match(MarkMaker::CENTER_JUSTIFY, "-----")
     refute_match(MarkMaker::CENTER_JUSTIFY, "")
     refute_match(MarkMaker::CENTER_JUSTIFY, ":")
+  end
+
+  def test_fill_justify
+    gen = MarkMaker::Generator.new
+    filled = gen.fill_justify('-', 'header', ":-:", "more", "stuff")
+    assert_equal(":----:", filled[1])
   end
 
   # def test_determine_justification

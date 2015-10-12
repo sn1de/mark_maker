@@ -183,8 +183,7 @@ Or, you can pass all the rows in at once like so ...
 And get nicely justified markdown like this ...
 ```
 |Col One|Col Two|Col Three|
-|-------|-------|---------|
-|:-     |  :-:  |       -:|
+|:------|:-----:|--------:|
 |First  |   A   |    $3.99|
 |Second |  BC   |   $14.00|
 |Third  | DEFGH |$1,034.50|
@@ -192,8 +191,7 @@ And get nicely justified markdown like this ...
 Which gives you this stunning HTML table ...
 
 |Col One|Col Two|Col Three|
-|-------|-------|---------|
-|:-     |  :-:  |       -:|
+|:------|:-----:|--------:|
 |First  |   A   |    $3.99|
 |Second |  BC   |   $14.00|
 |Third  | DEFGH |$1,034.50|
