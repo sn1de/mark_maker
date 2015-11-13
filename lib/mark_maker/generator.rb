@@ -189,12 +189,12 @@ module MarkMaker
       end
     end
 
+    # split the cell in two and then add the fill character
+    # to the end of the first half of the cell to reach the
+    # justified width
     def fill_justify(fill, *content)
       width = column_width(*content)
       content.map do |c|
-        # split the cell in two and then add the fill character
-        # to the end of the first half of the cell to reach the
-        # justified width
         c.insert(c.length / 2, fill * (width - c.length))
       end
     end
