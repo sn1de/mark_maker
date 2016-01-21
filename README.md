@@ -204,8 +204,7 @@ content = <<-QUOTE
 If you want to quote, you'll get a quote.
 Warning, it will just quote line by line, not break it up nicely.
 QUOTE
-puts gen.block_quote(*content.split("
-"))
+puts gen.block_quote(*content.lines)
 ```
 
 Produces the markdown ...

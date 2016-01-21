@@ -108,7 +108,7 @@ puts ""
 puts "Standard markdown code blocks and #{gen.code_span('code span')} are supported, as well as github"
 puts "flavored markdown fenced code blocks."
 puts ""
-sample_block = <<-EOT.split("\n")
+sample_block = <<-EOT.lines
 some_code = [ "# add it up",
               "total = [1, 2, 3, 4].inject do |sum, i|",
               "  sum += i",
@@ -154,14 +154,14 @@ table_code = <<-EOT
   puts gen.table_row("Second", "BC", "$14.00")
   puts gen.table_row("Third", "DEFGH", "$1,034.50")
 EOT
-puts gen.code_block(*table_code.split("\n"))
+puts gen.code_block(*table_code.lines)
 puts ""
 puts "Produces this terribly ugly markdown ..."
 puts ""
 table_markdown = capture_stdout do 
   eval(table_code)
 end
-puts gen.fenced_code_block(*table_markdown.string.split("\n"))
+puts gen.fenced_code_block(*table_markdown.string.lines)
 puts ""
 puts "Or, you can pass all the rows in at once like so ..."
 puts ""
@@ -175,12 +175,12 @@ pretty_table_code = <<-EOT
   ]
   puts gen.table(*table_data)
 EOT
-puts gen.fenced_code_language('ruby', *pretty_table_code.split("\n"))
+puts gen.fenced_code_language('ruby', *pretty_table_code.lines)
 puts "And get nicely justified markdown like this ..."
 pretty_table_markdown = capture_stdout do
   eval(pretty_table_code)
 end
-puts gen.fenced_code_block(*pretty_table_markdown.string.split("\n"))
+puts gen.fenced_code_block(*pretty_table_markdown.string.lines)
 puts "Which gives you this stunning HTML table ..."
 puts ""
 puts eval(pretty_table_code)
@@ -192,16 +192,16 @@ content = <<-QUOTE
 If you want to quote, you'll get a quote.
 Warning, it will just quote line by line, not break it up nicely.
 QUOTE
-puts gen.block_quote(*content.split("\n"))
+puts gen.block_quote(*content.lines)
 EOT
-puts gen.fenced_code_block(*block_quote_code.split("\n"))
+puts gen.fenced_code_block(*block_quote_code.lines)
 puts ""
 puts "Produces the markdown ..."
 puts ""
 block_quote_markdown = capture_stdout do
   eval(block_quote_code)
 end
-puts gen.fenced_code_block(*block_quote_markdown.string.split("\n"))
+puts gen.fenced_code_block(*block_quote_markdown.string.lines)
 puts ""
 puts ""
 puts "Which looks like this when viewed as HTML..."
