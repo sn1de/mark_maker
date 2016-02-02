@@ -4,7 +4,7 @@ SimpleCov.start
 require 'minitest_helper'
 
 class TestMarkMakerString < Minitest::Test
-  def test_header1_generation_string
+  def test_header1_generation
     title = "abc123"
     markup = title.header1
     assert_match(/^={#{title.size}}$/, markup)
@@ -30,5 +30,22 @@ class TestMarkMakerString < Minitest::Test
     content = "This is a bullet"
     markup = content.bullet
     assert_match(/^ - #{content}$/, markup)
+  end
+
+  def test_number_generation
+    content = "Number this line"
+    markup = content.number
+    assert_match(/^\s\d\.\s#{content}$/, markup)
+  end
+
+  def test_code_generation
+    content = "var = code()"
+    markup = content.code
+    assert_match(/\s{4}var = code\(\)$/, markup)
+  end
+
+  def test_code_span_generation
+    markup = "Some #{'a = b + c'.code_span} here."
+    assert_match(/^Some #{MarkMaker::CODE_TIC}a = b \+ c#{MarkMaker::CODE_TIC} here.$/, markup)
   end
 end

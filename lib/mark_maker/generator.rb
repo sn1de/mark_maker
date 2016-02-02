@@ -1,3 +1,4 @@
+require 'mark_maker_string'
 
 module MarkMaker
   # Generator is the workhorse of the MarkMaker utility. It provides
@@ -34,29 +35,29 @@ module MarkMaker
       content.map(&:bullet)
     end
 
-    def number(content, number = 1)
-      " #{number}. #{content}"
-    end
+    # def number(content, number = 1)
+    #   " #{number}. #{content}"
+    # end
 
     def numbers(*content)
       current_number = 0
-      content.map { |li| number(li, current_number += 1) }
+      content.map { |li| li.number(current_number += 1) }
     end
 
     def link(label, url)
       "[#{label}](#{url})"
     end
 
-    def code(content)
-      "    #{content}"
-    end
+    # def code(content)
+    #   "    #{content}"
+    # end
 
-    def code_span(content)
-      "#{CODE_TIC}#{content}#{CODE_TIC}"
-    end
+    # def code_span(content)
+    #   "#{CODE_TIC}#{content}#{CODE_TIC}"
+    # end
 
     def code_block(*content)
-      content.map { |c| code(c) }
+      content.map(&:code)
     end
 
     # creates a github flavored markdown fenced code block

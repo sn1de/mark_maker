@@ -1,3 +1,5 @@
+require 'mark_maker'
+
 # adds several basic string to markdown conversion methods
 class String
   def line_for(underscore)
@@ -18,5 +20,17 @@ class String
 
   def bullet
     " - #{self}"
+  end
+
+  def number(number = 1)
+    " #{number}. #{self}"
+  end
+
+  def code
+    "    #{self}"
+  end
+
+  def code_span
+    "#{MarkMaker::CODE_TIC}#{self}#{MarkMaker::CODE_TIC}"
   end
 end
