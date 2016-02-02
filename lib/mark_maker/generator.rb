@@ -6,15 +6,6 @@ module MarkMaker
       underscore * content.size
     end
 
-    def line_for_left
-    end
-
-    def line_for_right
-    end
-
-    def line_for_center
-    end
-
     # Justification indicators are a bit of a special case, because the way
     # they actually work is the colon's proximity to the vertical | bars marking
     # the table cells. This means that the center justification indicator, for
@@ -200,8 +191,7 @@ module MarkMaker
     end
 
     def column_width(*content)
-      longest = content.reduce { |a, e| a.length > e.length ? a : e }
-      longest.length
+      content.reduce { |a, e| a.length > e.length ? a : e } .length
     end
 
     def centered_margins(width, content)
