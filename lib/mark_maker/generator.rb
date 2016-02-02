@@ -1,11 +1,8 @@
+
 module MarkMaker
   # Generator is the workhorse of the MarkMaker utility. It provides
   # line by line generation of markdown output.
   class Generator
-    def line_for(underscore, content)
-      underscore * content.size
-    end
-
     # Justification indicators are a bit of a special case, because the way
     # they actually work is the colon's proximity to the vertical | bars marking
     # the table cells. This means that the center justification indicator, for
@@ -33,24 +30,8 @@ module MarkMaker
       justification?(c) ? '-' : fill
     end
 
-    def header1(title)
-      "#{title}\n#{line_for('=', title)}"
-    end
-
-    def header2(title)
-      "#{title}\n#{line_for('-', title)}"
-    end
-
-    def header3(title)
-      "### #{title}"
-    end
-
-    def bullet(content)
-      " - #{content}"
-    end
-
     def bullets(*content)
-      content.map { |li| bullet(li) }
+      content.map(&:bullet)
     end
 
     def number(content, number = 1)

@@ -57,8 +57,7 @@ and basic table markdown. See bin/generate_readme.rb for the code used to genera
 document and a sample of all these markdown generators in action.
 
 ### Header Example
-    gen = MarkMaker::Generator.new
-    gen.header1('Let It Begin'')
+    'Let It Begin'.header1
 
 Produces
 

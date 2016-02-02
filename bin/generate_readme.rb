@@ -11,7 +11,7 @@
 # would be a good way to eat my own dogfood and provide
 # a solid example.
 # 
-# examples. So here goes ... extreme readme driven development!
+# So here goes ... extreme readme driven development!
 
 require 'mark_maker'
 
@@ -25,11 +25,11 @@ ensure
 end
 
 gen = MarkMaker::Generator.new
-puts gen.header1("MarkMaker")
+puts "MarkMaker".header1
 puts ""
 puts "Programatically generate markdown documents."
 puts ""
-puts gen.header2("Intended Use")
+puts "Intended Use".header2
 puts ""
 puts "The mark_maker gem provides a set of methods that take text content and"
 puts "convert it to various markdown elements. The primary use case is simple"
@@ -57,7 +57,7 @@ puts "links would be nice. As would the ability to have an arbitrarily long stri
 puts "down into nicely formatted hard break paragraphs. Same goes for nicely indented multi-line"
 puts "bullets, etc."
 puts ""
-puts gen.header2("Installation")
+puts "Installation".header2
 puts ""
 puts "Add this line to your application's Gemfile:"
 puts ""
@@ -71,7 +71,7 @@ puts "Or install it yourself as:"
 puts ""
 puts gen.code("$ gem install mark_maker")
 puts ""
-puts gen.header2("Usage")
+puts "Usage".header2
 puts ""
 puts "MarkMaker provides line oriented conversion of content to markdown elements. It"
 puts "currently supports first, second and third level headings, links, bullets, numbered"
@@ -79,14 +79,13 @@ puts "bullets, #{gen.emphasis('emphasis')}, #{gen.strong('strong')}, code"
 puts "and basic table markdown. See #{__FILE__} for the code used to generate this"
 puts "document and a sample of all these markdown generators in action."
 puts ""
-puts gen.header3("Header Example")
+puts "Header Example".header3
 example_header = "Let It Begin"
-puts gen.code("gen = MarkMaker::Generator.new")
-puts gen.code("gen.header1('#{example_header}'')")
+puts gen.code("'#{example_header}'.header1")
 puts "\nProduces\n\n"
-gen.header1(example_header).lines.map { |l| puts gen.code(l) }
+example_header.header1.lines.map { |l| puts gen.code(l) }
 puts ""
-puts gen.header3("Bulleted List Example")
+puts "Bulleted List Example".header3
 list_content = ['gold', 'silver', 'bronze']
 puts ""
 puts gen.code("list_content = ['gold', 'silver', 'bronze']")
@@ -103,7 +102,7 @@ puts "Produces"
 puts ""
 puts gen.code_block(*eval(numbered_code))
 puts ""
-puts gen.header3("Code Examples")
+puts "Code Examples".header3
 puts ""
 puts "Standard markdown code blocks and #{gen.code_span('code span')} are supported, as well as github"
 puts "flavored markdown fenced code blocks."
@@ -144,7 +143,7 @@ puts "Rendering beautifully highlighted code like so, if you are viewing this on
 puts ""
 puts eval("#{sample_block.join}\n#{fenced_code_language}")
 puts ""
-puts gen.header3("Table Example")
+puts "Table Example".header3
 puts ""
 table_code = <<-EOT
   header, separator = gen.table_header("Col One", "Col Two", "Col Three")
@@ -185,7 +184,7 @@ puts "Which gives you this stunning HTML table ..."
 puts ""
 puts eval(pretty_table_code)
 puts ""
-puts gen.header3("Block Quotes Example")
+puts "Block Quotes Example".header3
 puts ""
 block_quote_code = <<-EOT
 content = <<-QUOTE
@@ -208,7 +207,7 @@ puts "Which looks like this when viewed as HTML..."
 puts ""
 puts eval(block_quote_code)
 puts ""
-puts gen.header2("Contributing")
+puts "Contributing".header2
 puts ""
 puts gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork"),
                    "Create your feature branch (`git checkout -b my-new-feature`)",
@@ -216,7 +215,7 @@ puts gen.numbers(gen.link("Fork it", "https://github.com/sn1de/mark_maker/fork")
                    "Push to the branch (`git push origin my-new-feature`)",
                    "Create a new Pull Request")
 puts ""
-puts gen.header2("About This README")
+puts "About This README".header2
 puts ""
 puts "This readme document is created using MarkMaker. To modify it, edit the code"
 puts "in #{__FILE__} and then run the 'readme' rake task to generate and overwrite the"

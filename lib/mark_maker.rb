@@ -1,4 +1,5 @@
 require "mark_maker/version"
+require "mark_maker/mark_maker_string"
 require "mark_maker/generator"
 
 # rubocop:disable Lint/HandleExceptions
