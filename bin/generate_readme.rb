@@ -37,7 +37,7 @@ puts "conversion of something like a JSON document into a markdown document."
 puts "" 
 puts "The initial development goal is to provide"
 puts "support for all of the markdown supported operations, at least in their basic form. What"
-puts "I mean by basic is that you provide a 'chunk' of content and the mark_maker #{ gen.code_span('Generator') }"
+puts "I mean by basic is that you provide a 'chunk' of content and the mark_maker #{ 'Generator'.code_span }"
 puts "will return that content in the corresponding markdown format. For grouped content, variable"
 puts "parameters will be provided on the method call to allow for things like correctly numbered"
 puts "bullet lists. Each call to the generator is treated as a separate"
@@ -51,7 +51,7 @@ puts "extended capabilities from expanded syntaxes like GitHub flavored markdown
 puts "generating non-core markdown will be noted in the documentation for that method."
 puts ""
 puts "If all goes well, and it appears anyone is using this gem, then a 2.0 release is"
-puts "envisioned that will add a #{ gen.code_span('Document') } class that will provide a"
+puts "envisioned that will add a #{ 'Document'.code_span } class that will provide a"
 puts "more holistic layer of capabilities. For example, the aformentioned reference style"
 puts "links would be nice. As would the ability to have an arbitrarily long string broken"
 puts "down into nicely formatted hard break paragraphs. Same goes for nicely indented multi-line"
@@ -61,15 +61,15 @@ puts "Installation".header2
 puts ""
 puts "Add this line to your application's Gemfile:"
 puts ""
-puts gen.code("gem 'mark_maker'")
+puts "gem 'mark_maker'".code
 puts ""
 puts "And then execute:"
 puts ""
-puts gen.code("$ bundle")
+puts "$ bundle".code
 puts ""
 puts "Or install it yourself as:"
 puts ""
-puts gen.code("$ gem install mark_maker")
+puts "$ gem install mark_maker".code
 puts ""
 puts "Usage".header2
 puts ""
@@ -81,22 +81,22 @@ puts "document and a sample of all these markdown generators in action."
 puts ""
 puts "Header Example".header3
 example_header = "Let It Begin"
-puts gen.code("'#{example_header}'.header1")
+puts "'#{example_header}'.header1".code
 puts "\nProduces\n\n"
-example_header.header1.lines.map { |l| puts gen.code(l) }
+example_header.header1.lines.map(&:code)
 puts ""
 puts "Bulleted List Example".header3
 list_content = ['gold', 'silver', 'bronze']
 puts ""
-puts gen.code("list_content = ['gold', 'silver', 'bronze']")
-puts gen.code("gen.bullets(*list_content)")
+puts "list_content = ['gold', 'silver', 'bronze']".code
+puts "gen.bullets(*list_content)".code
 puts "\nProduces\n\n"
 puts gen.code_block(*gen.bullets(*list_content))
 puts ""
 puts "Or a numbered list with..."
 puts ""
 numbered_code = "gen.numbers(*list_content)"
-puts gen.code(numbered_code)
+puts numbered_code.code
 puts ""
 puts "Produces"
 puts ""
@@ -104,7 +104,7 @@ puts gen.code_block(*eval(numbered_code))
 puts ""
 puts "Code Examples".header3
 puts ""
-puts "Standard markdown code blocks and #{gen.code_span('code span')} are supported, as well as github"
+puts "Standard markdown code blocks and #{'code span'.code_span} are supported, as well as github"
 puts "flavored markdown fenced code blocks."
 puts ""
 sample_block = <<-EOT.lines
@@ -124,7 +124,7 @@ puts ""
 puts "You can also generate a github flavored markdown fenced code version."
 fenced_code = "gen.fenced_code_block(*some_code)"
 puts ""
-puts gen.code(fenced_code)
+puts fenced_code.code
 puts ""
 puts "Produces"
 puts ""
@@ -133,7 +133,7 @@ puts ""
 puts "You can also include a language in a fenced code block."
 puts ""
 fenced_code_language = "gen.fenced_code_language('ruby', *some_code)"
-puts gen.code(fenced_code_language)
+puts fenced_code_language.code
 puts ""
 puts "Produces"
 puts ""
@@ -221,8 +221,8 @@ puts "This readme document is created using MarkMaker. To modify it, edit the co
 puts "in #{__FILE__} and then run the 'readme' rake task to generate and overwrite the"
 puts "existing README.md"
 puts ""
-puts gen.code("vi #{__FILE__}")
-puts gen.code("rake readme")
+puts "vi #{__FILE__}".code
+puts "rake readme".code
 puts ""
 puts "I'm calling this Extreme #{gen.link("Readme Driven Development", "http://tom.preston-werner.com/2010/08/23/readme-driven-development.html")}."
 puts "It's kind of like #{gen.link("Inception", "http://en.wikipedia.org/wiki/Inception")} ;)"

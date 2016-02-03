@@ -61,8 +61,6 @@ document and a sample of all these markdown generators in action.
 
 Produces
 
-    Let It Begin
-    ============
 
 ### Bulleted List Example
 
