@@ -66,6 +66,8 @@ Multi line and more complex conversions are handled by a Generator class.
 
 Produces
 
+    Let It Begin
+    ============
 
 ### Bulleted List Example
 

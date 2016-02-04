@@ -88,7 +88,7 @@ puts "Header Example".header3
 example_header = "Let It Begin"
 puts "'#{example_header}'.header1".code
 puts "\nProduces\n\n"
-example_header.header1.lines.map(&:code)
+example_header.header1.lines.map { |l| puts l.code }
 puts ""
 puts "Bulleted List Example".header3
 list_content = ['gold', 'silver', 'bronze']
