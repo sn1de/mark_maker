@@ -48,4 +48,16 @@ class TestMarkMakerString < Minitest::Test
     markup = "Some #{'a = b + c'.code_span} here."
     assert_match(/^Some #{MarkMaker::CODE_TIC}a = b \+ c#{MarkMaker::CODE_TIC} here.$/, markup)
   end
+
+  def test_emphasis_generation
+    content = "emphasize this"
+    markup = content.emphasis
+    assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS)}$/, markup)
+  end
+
+  def test_strong_generation
+    content = "strong stuff"
+    markup = content.strong
+    assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS * 2)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS * 2)}$/, markup)
+  end
 end

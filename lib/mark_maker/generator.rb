@@ -35,10 +35,6 @@ module MarkMaker
       content.map(&:bullet)
     end
 
-    # def number(content, number = 1)
-    #   " #{number}. #{content}"
-    # end
-
     def numbers(*content)
       current_number = 0
       content.map { |li| li.number(current_number += 1) }
@@ -47,14 +43,6 @@ module MarkMaker
     def link(label, url)
       "[#{label}](#{url})"
     end
-
-    # def code(content)
-    #   "    #{content}"
-    # end
-
-    # def code_span(content)
-    #   "#{CODE_TIC}#{content}#{CODE_TIC}"
-    # end
 
     def code_block(*content)
       content.map(&:code)
@@ -73,14 +61,6 @@ module MarkMaker
       block = *FENCE + lang
       block.push(*content)
       block << FENCE
-    end
-
-    def emphasis(content)
-      "#{EMPHASIS}#{content}#{EMPHASIS}"
-    end
-
-    def strong(content)
-      EMPHASIS * 2 + content + EMPHASIS * 2
     end
 
     def table_header(*content)

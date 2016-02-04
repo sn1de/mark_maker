@@ -67,20 +67,6 @@ class TestMarkMaker < Minitest::Test
     assert(markup.last == MarkMaker::FENCE, "Markup should end with the code fence.")
   end
 
-  def test_emphasis_generation
-    content = "emphasize this"
-    gen = MarkMaker::Generator.new
-    markup = gen.emphasis(content)
-    assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS)}$/, markup)
-  end
-
-  def test_strong_generation
-    content = "strong stuff"
-    gen = MarkMaker::Generator.new
-    markup = gen.strong(content)
-    assert_match(/^#{Regexp.quote(MarkMaker::EMPHASIS * 2)}#{content}#{Regexp.quote(MarkMaker::EMPHASIS * 2)}$/, markup)
-  end
-
   def test_table_header_generation
     content = ["Col One", "Col Two", "Col 3"]
     gen  = MarkMaker::Generator.new

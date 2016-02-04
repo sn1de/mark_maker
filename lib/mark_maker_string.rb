@@ -33,4 +33,12 @@ class String
   def code_span
     "#{MarkMaker::CODE_TIC}#{self}#{MarkMaker::CODE_TIC}"
   end
+
+  def emphasis
+    "#{MarkMaker::EMPHASIS}#{self}#{MarkMaker::EMPHASIS}"
+  end
+
+  def strong
+    MarkMaker::EMPHASIS * 2 + self + MarkMaker::EMPHASIS * 2
+  end
 end
