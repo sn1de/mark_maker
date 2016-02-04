@@ -79,6 +79,11 @@ puts "bullets, #{'emphasis'.emphasis}, #{'strong'.strong}, code"
 puts "and basic table markdown. See #{__FILE__} for the code used to generate this"
 puts "document and a sample of all these markdown generators in action."
 puts ""
+puts "Simple markdown generation is handled by extensions to the ruby String class. Headers,"
+puts "code, emphasis, and strong are all handled by String methods."
+puts ""
+puts "Multi line and more complex conversions are handled by a Generator class."
+puts ""
 puts "Header Example".header3
 example_header = "Let It Begin"
 puts "'#{example_header}'.header1".code

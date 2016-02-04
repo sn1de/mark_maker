@@ -56,6 +56,11 @@ bullets, *emphasis*, **strong**, code
 and basic table markdown. See bin/generate_readme.rb for the code used to generate this
 document and a sample of all these markdown generators in action.
 
+Simple markdown generation is handled by extensions to the ruby String class. Headers,
+code, emphasis, and strong are all handled by String methods.
+
+Multi line and more complex conversions are handled by a Generator class.
+
 ### Header Example
     'Let It Begin'.header1
 
