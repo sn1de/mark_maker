@@ -36,8 +36,7 @@ module MarkMaker
     end
 
     def numbers(*content)
-      current_number = 0
-      content.map { |li| li.number(current_number += 1) }
+      content.each.with_index(1).map { |l, i| l.number(i) }
     end
 
     def link(label, url)
