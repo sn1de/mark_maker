@@ -150,12 +150,6 @@ class TestMarkMaker < Minitest::Test
     assert_equal(test_justified, gen_justified)
   end
 
-  def test_column_width
-    gen = MarkMaker::Generator.new
-    width = gen.column_width("a", "bbb", "ccccc", "dd")
-    assert_equal(5, width)
-  end
-
   def test_centered_margins
     gen = MarkMaker::Generator.new
     left, right = gen.centered_margins(5, "cc")
