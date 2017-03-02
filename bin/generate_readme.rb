@@ -112,7 +112,7 @@ puts ""
 puts "Standard markdown code blocks and #{'code span'.code_span} are supported, as well as github"
 puts "flavored markdown fenced code blocks."
 puts ""
-sample_block = <<-EOT.lines
+sample_block = <<-EOT.lines.to_a
 some_code = [ "# add it up",
               "total = [1, 2, 3, 4].inject do |sum, i|",
               "  sum += i",

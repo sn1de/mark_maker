@@ -1,3 +1,4 @@
+require 'unindent'
 require 'simplecov'
 SimpleCov.start
 
@@ -95,13 +96,17 @@ class TestMarkMaker < Minitest::Test
   # usage of a heredoc as a test method
 
   def test_heredoc_method
-    desired_output = <<-EOS.strip_heredoc
-      This should contain no intents.
+    desired_output = <<-EOS.unindent
+      This should contain no indents.
 
       It should be 3 lines long.
     EOS
-    test_output = "This should contain no intents.\n\nIt should be 3 lines long.\n"
+    test_output = "This should contain no indents.\n\nIt should be 3 lines long.\n"
     assert_equal(desired_output, test_output, "Output must exactly match.")
+  end
+
+  def test_join
+    assert_equal("abc", ["a", "b", "c"].join)
   end
 
   def test_column_width
@@ -110,7 +115,7 @@ class TestMarkMaker < Minitest::Test
   end
 
   def test_pretty_table_generation
-    pretty_table = <<-EOS.strip_heredoc
+    pretty_table = <<-EOS.unindent
       |Col One|Col Two|Col Three|
       |:------|:-----:|--------:|
       |First  |   A   |    $3.99|
@@ -234,7 +239,7 @@ class TestMarkMaker < Minitest::Test
   # end
 
   # def test_right_justify_table_column
-  #   right_justified = <<-EOS.strip_heredoc
+  #   right_justified = <<-EOS.unindent
   #     |  Justified|
   #     |----------:|
   #     |          a|
@@ -248,7 +253,7 @@ class TestMarkMaker < Minitest::Test
 
 
   # def test_pretty_table_justified_generation
-  #   pretty_table = <<-EOS.strip_heredoc
+  #   pretty_table = <<-EOS.unindent
   #     |Col One|Col Two|Col Three |Data Sized   |
   #     |-------|-------|----------|-------------|
   #     |First  |   A   |     $3.99|xxxxxxxxxxxxx|
