@@ -1,6 +1,6 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-require 'rubocop/rake_task' unless ENV['CI' == 'true']
+require 'rubocop/rake_task' unless ENV['CI'] == 'true'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
@@ -13,7 +13,7 @@ task :console do
   exec "irb -r mark_maker -I ./lib"
 end
 
-if ENV['CI' != 'true']
+if ENV['CI'] != 'true'
   RuboCop::RakeTask.new(:rubocop) do |task|
     task.patterns = ['lib/**/*.rb']
   end
