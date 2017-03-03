@@ -25,6 +25,8 @@ ensure
 end
 
 gen = MarkMaker::Generator.new
+puts gen.image("MarkMaker build status", "https://travis-ci.org/sn1de/mark_maker.svg?branch=master", "Build Status")
+puts ""
 puts "MarkMaker".header1
 puts ""
 puts "Programatically generate markdown documents."

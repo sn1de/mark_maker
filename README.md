@@ -1,3 +1,5 @@
+![MarkMaker build status](https://travis-ci.org/sn1de/mark_maker.svg?branch=master Build Status)
+
 MarkMaker
 =========
 

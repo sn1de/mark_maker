@@ -43,6 +43,10 @@ module MarkMaker
       "[#{label}](#{url})"
     end
 
+    def image(alt, path, title = "")
+      "![#{alt}](#{path} #{title})"
+    end
+
     def code_block(*content)
       content.map(&:code)
     end

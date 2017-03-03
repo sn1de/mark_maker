@@ -37,6 +37,15 @@ class TestMarkMaker < Minitest::Test
     assert_match(/^\[#{label}\]\(#{url}\)$/, markup)
   end
 
+  def test_image_generation
+    path = "https://travis-ci.org/sn1de/mark_maker.svg?branch=master"
+    alt = "Mark Maker build status from Travis continuous integration"
+    title = "Build Status"
+    gen = MarkMaker::Generator.new
+    markup = gen.image(alt, path, title)
+    assert_match(/^!\[#{Regexp.quote(alt)}\]\(#{Regexp.quote(path)}\s#{Regexp.quote(title)}\)/, markup)
+  end
+
   def test_code_block_generation
     content = ["a = 1", "b = 2", "c = 3"]
     gen = MarkMaker::Generator.new
