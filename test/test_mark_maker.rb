@@ -43,7 +43,7 @@ class TestMarkMaker < Minitest::Test
     title = "Build Status"
     gen = MarkMaker::Generator.new
     markup = gen.image(alt, path, title)
-    assert_match(/^!\[#{Regexp.quote(alt)}\]\(#{Regexp.quote(path)}\s#{Regexp.quote(title)}\)/, markup)
+    assert_match(/^!\[#{Regexp.quote(alt)}\]\(#{Regexp.quote(path)}\s"#{Regexp.quote(title)}"\)/, markup)
   end
 
   def test_code_block_generation

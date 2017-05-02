@@ -18,6 +18,18 @@ class String
     "### #{self}"
   end
 
+  def header4
+    "#### #{self}"
+  end
+
+  def header5
+    "##### #{self}"
+  end
+
+  def header6
+    "###### #{self}"
+  end
+
   def bullet
     " - #{self}"
   end

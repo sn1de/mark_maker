@@ -44,7 +44,7 @@ module MarkMaker
     end
 
     def image(alt, path, title = "")
-      "![#{alt}](#{path} #{title})"
+      %Q(![#{alt}](#{path} "#{title}"))
     end
 
     def code_block(*content)
