@@ -1,3 +1,9 @@
+0.8.0
+-----
+ - added header 4 thru 6 support
+ - fixed a bug in the image generation when using a title
+ - noted supported ruby versions in the readme, per travis config
+
 0.7.0
 -----
  - added support for images

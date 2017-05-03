@@ -87,10 +87,27 @@ puts ""
 puts "Multi line and more complex conversions are handled by a Generator class."
 puts ""
 puts "Header Example".header3
-example_header = "Let It Begin"
-puts "'#{example_header}'.header1".code
-puts "\nProduces\n\n"
-example_header.header1.lines.map { |l| puts l.code }
+puts ""
+puts "The following ruby code ..."
+puts ""
+header_code = <<-EOT
+  h = "Let It Begin"
+  puts h.header1
+  puts h.header2
+  puts h.header3
+  puts h.header4
+  puts h.header5
+  puts h.header6
+EOT
+puts gen.fenced_code_language('ruby', *header_code.lines)
+puts ""
+puts "Results in this generated markdown ..."
+header_markdown = capture_stdout do
+  eval(header_code)
+end
+puts gen.fenced_code_block(*header_markdown.string.lines)
+puts "\nUltimately looking something like this (if your are viewing this on github or through some other markdown viewing method) ...\n\n"
+puts eval(header_code)
 puts ""
 puts "Bulleted List Example".header3
 list_content = ['gold', 'silver', 'bronze']
@@ -160,9 +177,9 @@ table_code = <<-EOT
   puts gen.table_row("Second", "BC", "$14.00")
   puts gen.table_row("Third", "DEFGH", "$1,034.50")
 EOT
-puts gen.code_block(*table_code.lines)
+puts gen.fenced_code_language('ruby', *table_code.lines)
 puts ""
-puts "Produces this terribly ugly markdown ..."
+puts "Produces this terribly ugly markdown (but standby, there is a better way below) ..."
 puts ""
 table_markdown = capture_stdout do 
   eval(table_code)
@@ -233,3 +250,23 @@ puts "rake readme".code
 puts ""
 puts "I'm calling this Extreme #{gen.link("Readme Driven Development", "http://tom.preston-werner.com/2010/08/23/readme-driven-development.html")}."
 puts "It's kind of like #{gen.link("Inception", "http://en.wikipedia.org/wiki/Inception")} ;)"
+puts ""
+puts "Supported Ruby Versions".header2
+puts ""
+puts "The following ruby versions are explicitly supported (see .travis.yml)"
+puts ""
+puts gen.bullets("2.3.0", "2.2.4", "1.9.3", "ruby-head")
+puts ""
+puts "Release Process".header2
+puts ""
+puts "Document release changes in `CHANGELOG.md`"
+puts ""
+puts "Increment the VERSION number in `lib/mark_maker/version.rb`"
+puts ""
+puts "Run `rake release` which will:"
+puts ""
+puts gen.bullets("build the gem into the `pkg/` director",
+                 "create a git tag for the version",
+                 "push to github",
+                 "push the packaged gem to rubygems")
+

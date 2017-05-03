@@ -64,12 +64,42 @@ code, emphasis, and strong are all handled by String methods.
 Multi line and more complex conversions are handled by a Generator class.
 
 ### Header Example
-    'Let It Begin'.header1
 
-Produces
+The following ruby code ...
 
-    Let It Begin
-    ============
+```ruby
+  h = "Let It Begin"
+  puts h.header1
+  puts h.header2
+  puts h.header3
+  puts h.header4
+  puts h.header5
+  puts h.header6
+```
+
+Results in this generated markdown ...
+```
+Let It Begin
+============
+Let It Begin
+------------
+### Let It Begin
+#### Let It Begin
+##### Let It Begin
+###### Let It Begin
+```
+
+Ultimately looking something like this (if your are viewing this on github or through some other markdown viewing method) ...
+
+Let It Begin
+============
+Let It Begin
+------------
+### Let It Begin
+#### Let It Begin
+##### Let It Begin
+###### Let It Begin
+
 
 ### Bulleted List Example
 
@@ -157,14 +187,16 @@ puts total
 
 ### Table Example
 
-      header, separator = gen.table_header("Col One", "Col Two", "Col Three")
-      puts header
-      puts separator
-      puts gen.table_row("First", "A", "$3.99")
-      puts gen.table_row("Second", "BC", "$14.00")
-      puts gen.table_row("Third", "DEFGH", "$1,034.50")
+```ruby
+  header, separator = gen.table_header("Col One", "Col Two", "Col Three")
+  puts header
+  puts separator
+  puts gen.table_row("First", "A", "$3.99")
+  puts gen.table_row("Second", "BC", "$14.00")
+  puts gen.table_row("Third", "DEFGH", "$1,034.50")
+```
 
-Produces this terribly ugly markdown ...
+Produces this terribly ugly markdown (but standby, there is a better way below) ...
 
 ```
 |Col One|Col Two|Col Three|
@@ -248,3 +280,27 @@ existing README.md
 
 I'm calling this Extreme [Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html).
 It's kind of like [Inception](http://en.wikipedia.org/wiki/Inception) ;)
+
+Supported Ruby Versions
+-----------------------
+
+The following ruby versions are explicitly supported (see .travis.yml)
+
+ - 2.3.0
+ - 2.2.4
+ - 1.9.3
+ - ruby-head
+
+Release Process
+---------------
+
+Document release changes in `CHANGELOG.md`
+
+Increment the VERSION number in `lib/mark_maker/version.rb`
+
+Run `rake release` which will:
+
+ - build the gem into the `pkg/` director
+ - create a git tag for the version
+ - push to github
+ - push the packaged gem to rubygems
