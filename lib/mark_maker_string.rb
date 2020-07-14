@@ -1,4 +1,3 @@
-require 'mark_maker'
 
 # adds several basic string to markdown conversion methods
 class String
