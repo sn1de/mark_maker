@@ -1,3 +1,10 @@
+0.9.0
+-----
+
+ - addressing security vulnerability associated with rake
+ - dropping support for ruby 1.x versions
+ - now calls for bundler 2
+
 0.8.0
 -----
  - added header 4 thru 6 support
