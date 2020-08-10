@@ -5,35 +5,6 @@ MarkMaker
 
 Programatically generate markdown documents.
 
-Intended Use
-------------
-
-The mark_maker gem provides a set of methods that take text content and
-convert it to various markdown elements. The primary use case is simple
-conversion of something like a JSON document into a markdown document.
-
-The initial development goal is to provide
-support for all of the markdown supported operations, at least in their basic form. What
-I mean by basic is that you provide a 'chunk' of content and the mark_maker `Generator`
-will return that content in the corresponding markdown format. For grouped content, variable
-parameters will be provided on the method call to allow for things like correctly numbered
-bullet lists. Each call to the generator is treated as a separate
-markdown operation. So things like link definitions aren't going to be supported,
-at least not in 1.0
-
-Speaking of versioning, I'll use semantic versioning to indicate when new markdown
-capabilities are added. I'll release 1.0 when I feel like it supports set
-of markdown capabilites that fulfill the intended use. This will also include some
-extended capabilities from expanded syntaxes like GitHub flavored markdown. Methods
-generating non-core markdown will be noted in the documentation for that method.
-
-If all goes well, and it appears anyone is using this gem, then a 2.0 release is
-envisioned that will add a `Document` class that will provide a
-more holistic layer of capabilities. For example, the aformentioned reference style
-links would be nice. As would the ability to have an arbitrarily long string broken
-down into nicely formatted hard break paragraphs. Same goes for nicely indented multi-line
-bullets, etc.
-
 Installation
 ------------
 
@@ -53,9 +24,9 @@ Usage
 -----
 
 MarkMaker provides line oriented conversion of content to markdown elements. It
-currently supports first, second and third level headings, links, bullets, numbered
+currently supports headings, links, bullets, numbered
 bullets, *emphasis*, **strong**, code
-and basic table markdown. See bin/generate_readme.rb for the code used to generate this
+and table markdown. See bin/generate_readme.rb for the code used to generate this
 document and a sample of all these markdown generators in action.
 
 Simple markdown generation is handled by extensions to the ruby String class. Headers,
@@ -284,12 +255,12 @@ It's kind of like [Inception](http://en.wikipedia.org/wiki/Inception) ;)
 Supported Ruby Versions
 -----------------------
 
-The following ruby versions are explicitly supported (see .travis.yml)
+The following ruby versions are explicitly supported and exercised via TravisCI (see .travis.yml)
 
- - 2.3.0
- - 2.2.4
- - 1.9.3
  - ruby-head
+ - 2.7
+ - 2.6
+ - 2.3
 
 Release Process
 ---------------

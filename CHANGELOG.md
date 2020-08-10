@@ -1,3 +1,9 @@
+1.0.0
+-----
+
+ - just tidied up the README
+ - clarified the supported ruby versions (all now 2.x variations)
+
 0.9.0
 -----
 
