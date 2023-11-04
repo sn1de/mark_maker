@@ -227,7 +227,7 @@ puts "Supported Ruby Versions".header2
 puts ""
 puts "The following ruby versions are explicitly supported and exercised via TravisCI (see .travis.yml)"
 puts ""
-puts gen.bullets("ruby-head", "2.7", "2.6", "2.3")
+puts gen.bullets("ruby-head", "2.7", "3.2")
 puts ""
 puts "Release Process".header2
 puts ""

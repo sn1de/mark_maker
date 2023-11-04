@@ -259,8 +259,7 @@ The following ruby versions are explicitly supported and exercised via TravisCI 
 
  - ruby-head
  - 2.7
- - 2.6
- - 2.3
+ - 3.2
 
 Release Process
 ---------------
