@@ -44,4 +44,9 @@ class TestHeaders < Minitest::Test
     assert_match(/######\s#{title}/, markup)
   end
 
+  def test_invalid_header_level
+    title = "abc123"
+    assert_raises(ArgumentError) { title.header(7) }
+  end
+
 end

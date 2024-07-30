@@ -5,29 +5,48 @@ class String
     underscore * size
   end
 
-  def header1
-    "#{self}\n#{line_for('=')}"
+  def header(level)
+    case level
+    when 1
+      "#{self}\n#{line_for('=')}"
+    when 2
+      "#{self}\n#{line_for('-')}"
+    when 3..6
+      "#{'#' * level} #{self}"
+    else
+      raise ArgumentError, "Header level must be between 1 and 6"
+    end
   end
 
-  def header2
-    "#{self}\n#{line_for('-')}"
+  (1..6).each do |level|
+    define_method("header#{level}") do
+      header(level)
+    end
   end
 
-  def header3
-    "### #{self}"
-  end
-
-  def header4
-    "#### #{self}"
-  end
-
-  def header5
-    "##### #{self}"
-  end
-
-  def header6
-    "###### #{self}"
-  end
+  # def header1
+  #   "#{self}\n#{line_for('=')}"
+  # end
+  #
+  # def header2
+  #   "#{self}\n#{line_for('-')}"
+  # end
+  #
+  # def header3
+  #   "### #{self}"
+  # end
+  #
+  # def header4
+  #   "#### #{self}"
+  # end
+  #
+  # def header5
+  #   "##### #{self}"
+  # end
+  #
+  # def header6
+  #   "###### #{self}"
+  # end
 
   def bullet
     " - #{self}"
