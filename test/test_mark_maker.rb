@@ -1,7 +1,4 @@
 require 'unindent'
-require 'simplecov'
-SimpleCov.start
-
 require 'minitest_helper'
 
 class TestMarkMaker < Minitest::Test
@@ -231,48 +228,4 @@ class TestMarkMaker < Minitest::Test
     assert_equal(":----:", filled[1])
   end
 
-  # def test_determine_justification
-  #   justifiers = ["-:", ":-", ":--:", "---:", ":---", "::", "---", "zzz"]
-  #   justifiers.each do |j|
-  #     case j
-  #     when MarkMaker::RIGHT_JUSTIFY
-  #       puts "#{j} will be right justified"
-  #     when MarkMaker::LEFT_JUSTIFY
-  #       puts "#{j} will be left justified"
-  #     when MarkMaker::CENTER_JUSTIFY
-  #       puts "#{j} will be center justified"
-  #     else
-  #       puts "#{j} is an invalid justification indicator"
-  #     end
-  #   end
-  # end
-
-  # def test_right_justify_table_column
-  #   right_justified = <<-EOS.unindent
-  #     |  Justified|
-  #     |----------:|
-  #     |          a|
-  #     |bbbbbbbbbbb|
-  #     |        ccc|
-  #   EOS
-  #   gen = MarkMaker::Generator.new
-  #   markdown = gen.table("Justified", ?????)
-  #   assert_equal(right_justified, markup, "Column content should be right justified.")
-  # end
-
-
-  # def test_pretty_table_justified_generation
-  #   pretty_table = <<-EOS.unindent
-  #     |Col One|Col Two|Col Three |Data Sized   |
-  #     |-------|-------|----------|-------------|
-  #     |First  |   A   |     $3.99|xxxxxxxxxxxxx|
-  #     |Second |   BC  |    $14.00|y            |
-  #     |Third  |  DEF  | $1,034.50|z            |
-  #     |Fourth |GHIJKLM|$10,123.45|a            |
-  #   EOS
-
-  #   markup = 'nada'
-  #   assert_equal(pretty_table, markup)
-  # end
 end
-

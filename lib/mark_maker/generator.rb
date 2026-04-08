@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mark_maker_string'
 
 module MarkMaker
@@ -27,8 +29,8 @@ module MarkMaker
 
     # Inspect the cell contents and return a justification indicator
     # as the fill element if the cell is a justification directive.
-    def justified_fill(c, fill)
-      justification?(c) ? '-' : fill
+    def justified_fill(cell, fill)
+      justification?(cell) ? '-' : fill
     end
 
     def bullets(*content)
@@ -44,7 +46,7 @@ module MarkMaker
     end
 
     def image(alt, path, title = "")
-      %Q(![#{alt}](#{path} "#{title}"))
+      %(![#{alt}](#{path} "#{title}"))
     end
 
     def code_block(*content)
@@ -68,13 +70,13 @@ module MarkMaker
 
     def table_header(*content)
       [
-        content.inject("|") { |a, e| a + "#{e}|" },
-        content.inject("|") { |a, e| a + "-" * e.size + "|" }
+        content.inject("|") { |acc, cell| acc + "#{cell}|" },
+        content.inject("|") { |acc, cell| "#{acc}#{'-' * cell.size}|" }
       ]
     end
 
     def table_row(*content)
-      content.inject("|") { |a, e| a << e << "|" }
+      content.inject("|") { |acc, cell| "#{acc}#{cell}|" }
     end
 
     # Table will treat the first line of content as the table header. It
@@ -84,19 +86,15 @@ module MarkMaker
 
     def table(*content)
       columns = content.transpose
-      justified = columns.map { |c| justify(*c) }
+      justified = columns.map { |column| justify(*column) }
       content = justified.transpose
       table = []
-      # if content.size >= 1
-      #   header, separator = table_header(*content[0])
-      #   table << header << separator
-      # end
-      content[0, content.size].each { |c| table << table_row(*c) }
-      table.map { |t| t + "\n" }
+      content[0, content.size].each { |row| table << table_row(*row) }
+      table.map { |row| "#{row}\n" }
     end
 
     def block_quote(*content)
-      content.map { |c| "#{BLOCK_QUOTE} #{c}" }
+      content.map { |line| "#{BLOCK_QUOTE} #{line}" }
     end
 
     def justify(*content)
@@ -117,30 +115,28 @@ module MarkMaker
     def left_justify(fill, *content)
       width = column_width(*content)
 
-      content.map { |c| c + justified_fill(c, fill) * (width - c.length) }
+      content.map { |cell| cell + justified_fill(cell, fill) * (width - cell.length) }
     end
 
     def right_justify(fill, *content)
       width = column_width(*content)
 
-      content.map { |c| justified_fill(c, fill) * (width - c.length) + c }
+      content.map { |cell| justified_fill(cell, fill) * (width - cell.length) + cell }
     end
 
     def center_justify(fill, *content)
       width = column_width(*content)
 
-      content.map do |c|
-        if justification?(c)
+      content.map do |cell|
+        if justification?(cell)
           # special case here, as justification must be filled from
           # the middle out in order to meet the markdown spec requirements
           # that will trigger proper justification
-          f = []
-          f << c
-          f << 'a' * width
-          fill_justify(justified_fill(c, fill), *f)[0]
+          fill_args = [cell, 'a' * width]
+          fill_justify(justified_fill(cell, fill), *fill_args)[0]
         else
-          left, right = centered_margins(width, c)
-          justified_fill(c, fill) * left + c + justified_fill(c, fill) * right
+          left, right = centered_margins(width, cell)
+          justified_fill(cell, fill) * left + cell + justified_fill(cell, fill) * right
         end
       end
     end
@@ -150,13 +146,13 @@ module MarkMaker
     # justified width
     def fill_justify(fill, *content)
       width = column_width(*content)
-      content.map do |c|
-        c.insert(c.length / 2, fill * (width - c.length))
+      content.map do |cell|
+        cell.dup.insert(cell.length / 2, fill * (width - cell.length))
       end
     end
 
     def column_width(*content)
-      content.reduce { |a, e| a.length > e.length ? a : e } .length
+      content.reduce { |widest, current| widest.length > current.length ? widest : current }.length
     end
 
     def centered_margins(width, content)

@@ -1,3 +1,16 @@
+1.1.0
+-----
+
+ - added frozen_string_literal magic comment to all library files
+ - freeze mutable regex constants (LEFT_JUSTIFY, RIGHT_JUSTIFY, CENTER_JUSTIFY)
+ - update Rubocop directive from deprecated Lint/HandleExceptions to Lint/SuppressedException
+ - add rubocop-minitest and rubocop-rake extensions
+ - prefer string interpolation over concatenation throughout generator.rb
+ - rename short variable names to descriptive alternatives
+ - fix fill_justify to avoid mutating frozen strings
+ - consolidate SimpleCov.start to minitest_helper.rb only
+ - remove commented-out dead code from generator.rb and test files
+
 1.0.0
 -----
 

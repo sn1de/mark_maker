@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require "mark_maker/version"
 require "mark_maker/generator"
 
-# rubocop:disable Lint/HandleExceptions
+# rubocop:disable Lint/SuppressedException
 begin
   require "pry"
 rescue LoadError
 end
-# rubocop:enable Lint/HandleExceptions
+# rubocop:enable Lint/SuppressedException
 
 # MarkMaker is a markdown generation capability. It is intended to be
 # very straightforward, non-tricky and easy to expand upon going
@@ -15,10 +17,10 @@ end
 # a line by line method.
 module MarkMaker
   CODE_TIC = "`"
-  FENCE = CODE_TIC * 3
+  FENCE = (CODE_TIC * 3)
   EMPHASIS = "*"
   BLOCK_QUOTE = ">"
-  LEFT_JUSTIFY = /^:-+$/
-  RIGHT_JUSTIFY = /^-+:$/
-  CENTER_JUSTIFY = /^:-*:$/
+  LEFT_JUSTIFY = /^:-+$/.freeze
+  RIGHT_JUSTIFY = /^-+:$/.freeze
+  CENTER_JUSTIFY = /^:-*:$/.freeze
 end

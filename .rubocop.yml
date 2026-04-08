@@ -1,2 +1,6 @@
+require:
+  - rubocop-minitest
+  - rubocop-rake
+
 Style/StringLiterals:
   Enabled: false

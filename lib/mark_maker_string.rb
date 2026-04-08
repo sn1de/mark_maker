@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # adds several basic string to markdown conversion methods
 class String
@@ -23,30 +24,6 @@ class String
       header(level)
     end
   end
-
-  # def header1
-  #   "#{self}\n#{line_for('=')}"
-  # end
-  #
-  # def header2
-  #   "#{self}\n#{line_for('-')}"
-  # end
-  #
-  # def header3
-  #   "### #{self}"
-  # end
-  #
-  # def header4
-  #   "#### #{self}"
-  # end
-  #
-  # def header5
-  #   "##### #{self}"
-  # end
-  #
-  # def header6
-  #   "###### #{self}"
-  # end
 
   def bullet
     " - #{self}"
